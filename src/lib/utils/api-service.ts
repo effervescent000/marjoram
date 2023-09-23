@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = 'http://127.0.0.1:8000';
 
 const makeUrlWithParams = (url: string, params?: Record<string, string | number>) => {
   if (!params) return url;
@@ -28,6 +28,7 @@ const makeGetRequest = async (
     const result = await response.json();
     return result;
   } catch (error) {
+    console.log(error);
     return { error: 'Error fetching' };
   }
 };
@@ -43,11 +44,7 @@ export const GET = async (
 
 const makePostRequest = async (
   url: string,
-  {
-    params,
-    token,
-    body
-  }: { params?: Record<string, string | number>; token?: string; body: object[] }
+  { params, token, body }: { params?: Record<string, string | number>; token?: string; body: any }
 ) => {
   const fullUrl = makeUrlWithParams(url, params);
   try {
@@ -59,19 +56,40 @@ const makePostRequest = async (
     const result = await response.json();
     return result;
   } catch (error) {
+    console.log(error);
     return { error: 'Error fetching' };
   }
 };
 
 export const POST = async (
   endpoint: string,
-  {
-    params,
-    token,
-    body
-  }: { params?: Record<string, string | number>; token?: string; body: object[] }
+  { params, token, body }: { params?: Record<string, string | number>; token?: string; body: any }
 ) => {
   const url = BASE_URL + endpoint;
   const result = await makePostRequest(url, { params, token, body });
   return result.data;
+};
+
+export const login = async (userData: { username?: string; password?: string }) => {
+  const headers = new Headers({
+    'Content-Type': 'application/x-www-form-urlencoded'
+  });
+  try {
+    const response = await fetch(BASE_URL + '/auth/access-token', {
+      method: 'POST',
+      headers,
+      body: Object.entries(userData)
+        .map(([key, value]) => `${key}=${value}`)
+        .join('&')
+    });
+    const result = await response.json();
+    console.log(
+      'result',
+      result.detail.map(({ loc }) => loc)
+    );
+    return result;
+  } catch (error) {
+    console.log(error);
+    return { error: 'Error logging in' };
+  }
 };
