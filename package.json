@@ -51,5 +51,7 @@
     "vitest": "^0.32.2"
   },
   "type": "module",
-  "dependencies": {}
+  "dependencies": {
+    "zod": "^3.22.2"
+  }
 }

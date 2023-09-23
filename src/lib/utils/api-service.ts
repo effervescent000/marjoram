@@ -18,7 +18,7 @@ const getAuthHeader = (token: string) =>
 
 const makeGetRequest = async (
   url: string,
-  { params, token }: { params?: Record<string, string | number>; token?: string }
+  { params, token }: { params?: Record<string, string | number>; token?: string } = {}
 ) => {
   const fullUrl = makeUrlWithParams(url, params);
   try {
@@ -39,12 +39,16 @@ export const GET = async (
 ) => {
   const url = BASE_URL + endpoint;
   const result = await makeGetRequest(url, { params, token });
-  return result.data;
+  return result;
 };
 
 const makePostRequest = async (
   url: string,
-  { params, token, body }: { params?: Record<string, string | number>; token?: string; body: any }
+  {
+    params,
+    token,
+    body
+  }: { params?: Record<string, string | number>; token?: string; body: Record<string, any>[] }
 ) => {
   const fullUrl = makeUrlWithParams(url, params);
   try {
@@ -63,7 +67,11 @@ const makePostRequest = async (
 
 export const POST = async (
   endpoint: string,
-  { params, token, body }: { params?: Record<string, string | number>; token?: string; body: any }
+  {
+    params,
+    token,
+    body
+  }: { params?: Record<string, string | number>; token?: string; body: Record<string, any>[] }
 ) => {
   const url = BASE_URL + endpoint;
   const result = await makePostRequest(url, { params, token, body });
@@ -83,10 +91,6 @@ export const login = async (userData: { username?: string; password?: string }) 
         .join('&')
     });
     const result = await response.json();
-    console.log(
-      'result',
-      result.detail.map(({ loc }) => loc)
-    );
     return result;
   } catch (error) {
     console.log(error);
