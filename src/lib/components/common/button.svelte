@@ -6,11 +6,11 @@
 
   const makeButtonClasses = () => {
     if (style === PLAIN) {
-      return '';
+      return 'bg-bg-secondary border-accent-primary border border-solid rounded-sm';
     }
   };
 </script>
 
-<button class={` ${makeButtonClasses()}`}>
+<button class={`p-1 active:brightness-90 ${makeButtonClasses()}`}>
   <slot />
 </button>
