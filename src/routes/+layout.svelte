@@ -2,9 +2,9 @@
   import '../app.css';
 
   import { userStore } from '$lib/stores/user-store';
+  import { languageStore, selectedLanguage } from '$lib/stores/language-store';
 
   import Header from '$lib/components/header/header.svelte';
-  import { languageStore, selectedLanguage } from '$lib/stores/language-store';
 
   export let data;
 

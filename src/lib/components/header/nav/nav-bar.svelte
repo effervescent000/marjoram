@@ -4,7 +4,7 @@
   import NavItem from './nav-item.svelte';
 </script>
 
-<div class="flex">
+<div class="flex gap-5">
   {#each NAV_ROUTES as route}
     <NavItem {...route} />
   {/each}
