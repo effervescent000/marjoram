@@ -4,12 +4,22 @@
   import { userStore } from '$lib/stores/user-store';
 
   import Header from '$lib/components/header/header.svelte';
+  import { languageStore, selectedLanguage } from '$lib/stores/language-store';
 
   export let data;
 
   $: {
     if (data?.user?.username) {
       userStore.set(data.user);
+    }
+  }
+
+  $: {
+    if (data?.languages) {
+      if (!$selectedLanguage) {
+        selectedLanguage.set(data.languages[0].id);
+      }
+      languageStore.set(data.languages);
     }
   }
 </script>

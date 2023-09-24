@@ -1,8 +1,9 @@
 <script lang="ts">
   import { userStore } from '$lib/stores/user-store';
-  import LangSelectorWrapper from '../language-selection/lang-selector-wrapper.svelte';
+
   import Auth from './auth.svelte';
   import NavBar from './nav/nav-bar.svelte';
+  import LangSelectorWrapper from './language-selection/lang-selector-wrapper.svelte';
 </script>
 
 <div class="flex justify-between">

@@ -3,8 +3,8 @@
 
   import { goto } from '$app/navigation';
 
-  import ButtonWithIcon from '../common/button-with-icon.svelte';
   import LangSelector from './lang-selector.svelte';
+  import { ButtonWithIcon } from '$lib';
 </script>
 
 <div class="flex items-center gap-1">

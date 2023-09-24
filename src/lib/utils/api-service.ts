@@ -11,19 +11,16 @@ const makeUrlWithParams = (url: string, params?: Record<string, string | number>
   );
 };
 
-const getAuthHeader = (token: string) =>
-  new Headers({
-    Authorization: `Bearer ${token}`
-  });
-
 const makeGetRequest = async (
   url: string,
   { params, token }: { params?: Record<string, string | number>; token?: string } = {}
 ) => {
   const fullUrl = makeUrlWithParams(url, params);
+  const headers = new Headers({ 'Content-Type': 'application/json' });
+  if (token) headers.append('Authorization', `Bearer ${token}`);
   try {
     const response = await fetch(fullUrl, {
-      headers: token ? getAuthHeader(token) : undefined
+      headers
     });
     const result = await response.json();
     return result;
@@ -51,13 +48,18 @@ const makePostRequest = async (
   }: { params?: Record<string, string | number>; token?: string; body: Record<string, any>[] }
 ) => {
   const fullUrl = makeUrlWithParams(url, params);
+  const headers = new Headers({ 'Content-Type': 'application/json' });
+  if (token) headers.append('Authorization', `Bearer ${token}`);
   try {
     const response = await fetch(fullUrl, {
       method: 'POST',
-      headers: token ? getAuthHeader(token) : undefined,
+      headers,
       body: JSON.stringify(body)
     });
     const result = await response.json();
+    if (result.detail) {
+      console.log(result.detail);
+    }
     return result;
   } catch (error) {
     console.log(error);

@@ -1,1 +1,4 @@
-Nothing here yet!
+<script lang="ts">
+</script>
+
+Nothing here yet.
