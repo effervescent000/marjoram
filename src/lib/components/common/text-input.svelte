@@ -1,7 +1,10 @@
 <script lang="ts">
   export let name: string;
   export let label = '';
-  export let isPassword = false;
+  export let initialValue: string | undefined = undefined;
+  export let required = false;
+
+  let value = initialValue;
 </script>
 
 <label class="flex gap-2 justify-between">
@@ -10,7 +13,9 @@
   {/if}
   <input
     class="border-accent-primary border border-solid rounded-sm"
-    type={isPassword ? 'password' : 'text'}
+    type="text"
     {name}
+    bind:value
+    {required}
   />
 </label>

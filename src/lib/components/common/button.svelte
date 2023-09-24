@@ -4,6 +4,8 @@
 
   export let style: ButtonStyles = 'plain';
   export let shape: ButtonShapes = 'plain';
+  export let onClick: (() => void) | undefined = undefined;
+  export let type: 'submit' | 'button' | 'reset' = 'button';
 
   const makeButtonStyleClasses = () => {
     if (style === PLAIN) {
@@ -24,6 +26,10 @@
   };
 </script>
 
-<button class={`active:brightness-90 ${makeButtonShapeClasses()} ${makeButtonStyleClasses()}`}>
+<button
+  on:click={onClick}
+  class={`active:brightness-90 ${makeButtonShapeClasses()} ${makeButtonStyleClasses()}`}
+  {type}
+>
   <slot />
 </button>

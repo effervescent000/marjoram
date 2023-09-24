@@ -9,10 +9,11 @@
   export let icon: IconDefinition;
   export let style: ButtonStyles = PLAIN;
   export let shape: ButtonShapes = PLAIN;
+  export let onClick: (() => void) | undefined = undefined;
 </script>
 
-<Button {style} {shape}>
-  <div class="flex w-full justify-center">
+<Button {onClick} {style} {shape}>
+  <div class="flex w-full justify-center text-sm">
     <Fa {icon} />
   </div>
 </Button>
