@@ -8,7 +8,7 @@
   {#if label}
     <span>{label}</span>
   {/if}
-  <select class="bg-bg-secondary" on:change={onChange}>
+  <select class="bg-bg-secondary p-0.5 rounded-sm min-w-[11rem]" on:change={onChange}>
     {#each options as opt}
       <option value={opt.value}>{opt.label}</option>
     {/each}
