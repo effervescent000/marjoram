@@ -1,10 +1,10 @@
-import type { PageServerLoad } from './$types';
+import type { ServerLoad } from '@sveltejs/kit';
 
 import { UserSchema } from '$lib/schema/auth-schema';
 
 import { GET } from '$lib/utils/api-service';
 
-export const load: PageServerLoad = async ({ cookies }) => {
+export const load: ServerLoad = async ({ cookies }) => {
   const token = cookies.get('access_token');
   const response = await GET('/users/me', { token });
   try {

@@ -9,7 +9,6 @@
 
   $: {
     if (data?.user?.username) {
-      console.log('setting user store!');
       userStore.set(data.user);
     }
   }
