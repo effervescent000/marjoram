@@ -4,7 +4,7 @@
   import { userStore } from '$lib/stores/user-store';
   import { languageStore, selectedLanguage } from '$lib/stores/language-store';
 
-  import Header from '$lib/components/header/header.svelte';
+  import SidebarLeft from '$lib/components/sidebar-left/sidebar-left.svelte';
 
   export let data;
 
@@ -24,7 +24,9 @@
   }
 </script>
 
-<div class="m-3">
-  <Header />
-  <slot />
+<div class="flex">
+  <SidebarLeft />
+  <div class="m-2">
+    <slot />
+  </div>
 </div>
