@@ -23,5 +23,5 @@
   <NavSidebar routes={testRoutes} {...args} />
 </Template>
 
-<Story name="Logged In" />
-<Story name="Logged out" />
+<Story name="Logged In" args={{ loggedIn: true }} />
+<Story name="Logged out" args={{ loggedIn: false }} />

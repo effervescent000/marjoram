@@ -13,18 +13,20 @@
   let collapsedChildren = true;
 </script>
 
-<div style={`margin-left: ${1.5 * nestedLevel}rem;`}>
-  <ButtonWithIcon
-    icon={collapsedChildren ? faCaretRight : faCaretDown}
-    onClick={() => (collapsedChildren = !collapsedChildren)}
-  />
-  <a href={route.path}>{route.label}</a>
-  {#if route.children}
-    <NavSidebar
-      routes={route.children}
-      nestedLevel={nestedLevel + 1}
-      collapsed={collapsedChildren}
-      {loggedIn}
+{#if !route.requiresLogin || (route.requiresLogin && loggedIn)}
+  <div style={`margin-left: ${1.5 * nestedLevel}rem;`}>
+    <ButtonWithIcon
+      icon={collapsedChildren ? faCaretRight : faCaretDown}
+      onClick={() => (collapsedChildren = !collapsedChildren)}
     />
-  {/if}
-</div>
+    <a href={route.path}>{route.label}</a>
+    {#if route.children}
+      <NavSidebar
+        routes={route.children}
+        nestedLevel={nestedLevel + 1}
+        collapsed={collapsedChildren}
+        {loggedIn}
+      />
+    {/if}
+  </div>
+{/if}
