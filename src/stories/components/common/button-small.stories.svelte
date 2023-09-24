@@ -2,7 +2,7 @@
   import Button from '$lib/components/common/button.svelte';
 
   export const meta = {
-    title: 'Button',
+    title: 'Button (Small)',
     component: Button
   };
 </script>
@@ -12,9 +12,9 @@
 </script>
 
 <Template let:args>
-  <Button {...args}>Test button!</Button>
+  <Button {...args}>a</Button>
 </Template>
 
 <Story name="Plain" />
 
-<Story name="Action" args={{ style: 'action' }} />
+<Story name="Circle" args={{ shape: 'circle' }} />

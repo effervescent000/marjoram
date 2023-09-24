@@ -8,7 +8,8 @@ export default {
         'bg-secondary': '#D8E2DC',
         'text-primary': '#2E2327',
         'accent-primary': '#FFCAD4',
-        'accent-secondary': '#F4ACB7'
+        'accent-secondary': '#F4ACB7',
+        "action-primary": "#AFDEB7"
       }
     }
   },
