@@ -3,11 +3,11 @@
   export let options: Record<string, string | number>[];
   export let onChange: (() => void) | undefined = undefined;
   export let initialValue: string | number | undefined = undefined;
-
+  export let vertical = false;
   export let value = initialValue;
 </script>
 
-<label>
+<label class={vertical ? 'flex flex-col w-min' : 'flex justify-between'}>
   {#if label}
     <span>{label}</span>
   {/if}
