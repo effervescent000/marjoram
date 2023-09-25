@@ -9,8 +9,10 @@
   export let route: Route;
   export let nestedLevel: number;
   export let loggedIn: boolean;
+  export let parentPath: string;
 
   let collapsedChildren = true;
+  $: currentPath = parentPath + route.path;
 </script>
 
 {#if !route.requiresLogin || (route.requiresLogin && loggedIn)}
@@ -19,12 +21,13 @@
       icon={collapsedChildren ? faCaretRight : faCaretDown}
       onClick={() => (collapsedChildren = !collapsedChildren)}
     />
-    <a href={route.path}>{route.label}</a>
+    <a href={currentPath}>{route.label}</a>
     {#if route.children}
       <NavSidebar
         routes={route.children}
         nestedLevel={nestedLevel + 1}
         collapsed={collapsedChildren}
+        parentPath={currentPath}
         {loggedIn}
       />
     {/if}
