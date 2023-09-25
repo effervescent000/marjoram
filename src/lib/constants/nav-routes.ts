@@ -9,5 +9,15 @@ export const NAV_ROUTES: Route[] = [
     label: 'Language',
     path: '/language',
     requiresLogin: true
+  },
+  {
+    label: 'Community Tools',
+    path: '/tools',
+    children: [
+      {
+        label: 'Word Links',
+        path: '/word_links'
+      }
+    ]
   }
 ];

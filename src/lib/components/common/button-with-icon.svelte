@@ -13,7 +13,7 @@
 </script>
 
 <Button {onClick} {style} {shape}>
-  <div class="flex w-full justify-center text-sm">
+  <div class="flex w-full justify-center text-xs">
     <Fa {icon} class={shape === PLAIN && 'aspect-square w-4'} />
   </div>
 </Button>

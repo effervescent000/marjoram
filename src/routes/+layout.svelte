@@ -26,7 +26,7 @@
 
 <div class="flex">
   <SidebarLeft />
-  <div class="m-2">
+  <div class="m-2 w-full">
     <slot />
   </div>
 </div>

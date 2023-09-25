@@ -21,7 +21,7 @@
       return 'rounded-sm p-1';
     }
     if (shape === CIRCLE) {
-      return 'rounded-[100%] min-w-[20px] w-min p-2 max-w-[60px] aspect-square';
+      return 'rounded-[100%] min-w-[20px] w-min p-1.5 max-w-[60px] aspect-square';
     }
   };
 </script>
