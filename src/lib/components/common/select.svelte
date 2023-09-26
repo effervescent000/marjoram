@@ -1,4 +1,5 @@
 <script lang="ts">
+  export let name: string;
   export let label = '';
   export let options: Record<string, string | number>[];
   export let onChange: (() => void) | undefined = undefined;
@@ -11,7 +12,12 @@
   {#if label}
     <span>{label}</span>
   {/if}
-  <select bind:value class="bg-bg-secondary p-0.5 rounded-sm min-w-[11rem]" on:change={onChange}>
+  <select
+    {name}
+    bind:value
+    class="bg-bg-secondary p-0.5 rounded-sm min-w-[11rem]"
+    on:change={onChange}
+  >
     {#each options as opt}
       <option value={opt.value}>{opt.label}</option>
     {/each}

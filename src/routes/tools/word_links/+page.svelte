@@ -19,7 +19,7 @@
 
 <div class="my-5">
   {#if editMode}
-    <WordLinkEdit link={selectedWordLink} />
+    <WordLinkEdit link={selectedWordLink} disableEditMode={() => (editMode = false)} />
   {:else}
     <div class="flex justify-between">
       <div>

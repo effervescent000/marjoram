@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { enhance } from '$app/forms';
+
   import type { WordLink } from '$lib/types/words-types';
 
   import { PARTS_OF_SPEECH } from '$lib/constants/word-constants';
@@ -8,11 +10,21 @@
   import Button from '../common/button.svelte';
 
   export let link: WordLink | undefined = undefined;
+  export let disableEditMode: () => void;
 
   const options = Object.values(PARTS_OF_SPEECH).map((value) => ({ label: value, value }));
 </script>
 
-<form method="post" action="?/upsert">
+<form
+  method="post"
+  action="?/upsert"
+  use:enhance={() => {
+    return async ({ update }) => {
+      disableEditMode();
+      await update();
+    };
+  }}
+>
   <div class="grid grid-cols-2 gap-5 my-5">
     <TextInput
       vertical
@@ -22,7 +34,13 @@
       initialValue={link?.definition}
     />
     <TextInput vertical name="hint" label="Hint" initialValue={link?.hint} />
-    <Select vertical label="Part of speech" {options} initialValue={link?.part_of_speech} />
+    <Select
+      name="part_of_speech"
+      vertical
+      label="Part of speech"
+      {options}
+      initialValue={link?.part_of_speech}
+    />
   </div>
   <Button type="submit">Save</Button>
 </form>
