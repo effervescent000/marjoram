@@ -28,7 +28,7 @@
           name="search"
           vertical
           label="Search"
-          onInput={(event) => (searchTerm = event?.target?.value)}
+          onInput={(event) => (searchTerm = event?.target?.value || '')}
         />
       </div>
       <Button onClick={() => (editMode = true)}>Add a new word link</Button>

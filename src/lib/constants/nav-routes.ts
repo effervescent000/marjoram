@@ -1,14 +1,19 @@
 import type { Route } from '$lib/types/common-types';
 
-export const NAV_ROUTES: Route[] = [
+export const navRoutes: (language_id: number) => Route[] = (language_id: number) => [
   {
     label: 'Home',
     path: '/'
   },
   {
     label: 'Language',
-    path: '/language',
-    requiresLogin: true
+    path: `/language/${language_id}`,
+    children: [
+      {
+        label: 'Dictionary',
+        path: '/dictionary'
+      }
+    ]
   },
   {
     label: 'Community Tools',
