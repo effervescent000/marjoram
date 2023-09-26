@@ -20,12 +20,15 @@
   action="?/upsert"
   use:enhance={() => {
     return async ({ update }) => {
-      disableEditMode();
       await update();
+      disableEditMode();
     };
   }}
 >
   <div class="grid grid-cols-2 gap-5 my-5">
+    {#if link?.id}
+      <input type="hidden" name="id" value={link?.id} />
+    {/if}
     <TextInput
       vertical
       name="definition"

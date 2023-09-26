@@ -1,11 +1,11 @@
 <script lang="ts">
   import type { WordLink } from '$lib/types/words-types.js';
 
+  import Button from '$lib/components/common/button.svelte';
   import Heading from '$lib/components/common/heading.svelte';
   import TextInput from '$lib/components/common/text-input.svelte';
   import WordLinkEdit from '$lib/components/word-links/word-link-edit.svelte';
   import WordLinkWrapper from '$lib/components/word-links/word-link-wrapper.svelte';
-  import Button from '$lib/components/common/button.svelte';
 
   export let data;
 
@@ -31,4 +31,10 @@
   {/if}
 </div>
 
-<WordLinkWrapper links={data.wordLinks} />
+<WordLinkWrapper
+  links={data.wordLinks}
+  selectWordLink={(link) => {
+    selectedWordLink = link;
+    editMode = true;
+  }}
+/>
