@@ -11,6 +11,7 @@
 
   let editMode = false;
   let selectedWordLink: WordLink | undefined = undefined;
+  let searchTerm = '';
 </script>
 
 <Heading>
@@ -23,8 +24,12 @@
   {:else}
     <div class="flex justify-between">
       <div>
-        <span> This will be a search bar but currently it's nothing! </span>
-        <TextInput name="search" disabled />
+        <TextInput
+          name="search"
+          vertical
+          label="Search"
+          onInput={(event) => (searchTerm = event?.target?.value)}
+        />
       </div>
       <Button onClick={() => (editMode = true)}>Add a new word link</Button>
     </div>
@@ -32,7 +37,9 @@
 </div>
 
 <WordLinkWrapper
-  links={data.wordLinks}
+  links={searchTerm
+    ? data.wordLinks.filter((wordLink) => wordLink.definition.includes(searchTerm))
+    : data.wordLinks}
   selectWordLink={(link) => {
     selectedWordLink = link;
     editMode = true;
