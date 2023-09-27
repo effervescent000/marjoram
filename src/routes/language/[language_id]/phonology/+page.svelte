@@ -15,5 +15,5 @@
   <Heading>
     <span>{language.name} Phonology</span>
   </Heading>
-  <PhonologyList phones={data.phonology} />
+  <PhonologyList phones={data.phonology} token={data.token} />
 {/if}

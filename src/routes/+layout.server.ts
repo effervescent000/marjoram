@@ -13,7 +13,7 @@ export const load: ServerLoad = async ({ cookies }) => {
   try {
     const user = UserSchema.parse(userResponse);
     const languages = langsResponse.map((lang: unknown) => LangSchema.parse(lang));
-    return { user, languages };
+    return { user, languages, token };
   } catch (error) {
     return undefined;
   }

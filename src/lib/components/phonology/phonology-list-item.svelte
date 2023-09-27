@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { page } from '$app/stores';
+
   import type { Phone } from '$lib/types/phonology-types';
 
   import { QUALITIES } from '$lib/constants/phonology-constants';
@@ -11,6 +13,10 @@
 </script>
 
 <HiddenInput name={arrayLocation + '.id'} value={phone.id} />
+<HiddenInput
+  name={arrayLocation + '.language_id'}
+  value={phone.language_id || $page.params.language_id}
+/>
 <HiddenInput name={arrayLocation + '.base_phone'} value={phone.base_phone} />
 <div class="flex">
   <TextInput
