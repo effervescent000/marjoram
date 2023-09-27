@@ -48,7 +48,7 @@
       on:focusout={() => setTimeout(() => (expanded = false), 200)}
     />
     <ul
-      class={`bg-bg-secondary z-10 border-accent-secondary border border-solid ${
+      class={`absolute max-h-32 w-52 overflow-y-scroll bg-bg-secondary z-10 border-accent-secondary border border-solid ${
         !expanded && 'hidden'
       }`}
     >

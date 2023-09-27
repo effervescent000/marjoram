@@ -11,10 +11,10 @@
   import TextInput from '$lib/components/common/text-input.svelte';
   import { Select } from '$lib';
   import Button from '../common/button.svelte';
-  import { page } from '$app/stores';
 
   export let word: Word | undefined = undefined;
   export let globalWordLinks: WordLink[];
+  export let language_id: number;
 
   let word_links = word?.word_links.map((link) => link.id) || [];
 
@@ -26,7 +26,8 @@
 
 <form method="post" action="?/upsert" use:enhance>
   <div class="grid grid-cols-2 gap-y-10">
-    <input type="hidden" name="language_id" value={$page.params.language_id} />
+    <input type="hidden" name="language_id" value={language_id} />
+    <input type="hidden" name="id" value={word?.id} />
     <TextInput name="word" label="Word" vertical initialValue={word?.word} />
     <div>
       <SearchableTextInput
@@ -36,7 +37,7 @@
         options={wordLinkOptions}
         callback={(value) => (word_links = [...word_links, value])}
       />
-      <ul>
+      <ul class="h-36 overflow-y-scroll">
         {#each word_links as link_id}
           <li>
             {composeDefinitionWithHint(globalWordLinks.find(({ id }) => link_id === id))}
@@ -51,6 +52,7 @@
       vertical
       required
       options={partOfSpeechOptions}
+      initialValue={word?.part_of_speech}
     />
   </div>
   <div class="my-6">
