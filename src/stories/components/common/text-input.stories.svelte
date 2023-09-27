@@ -12,7 +12,9 @@
 </script>
 
 <Template let:args>
-  <TextInput {...args} />
+  <TextInput name="test" {...args} />
 </Template>
 
-<Story name="Primary" args={{ name: 'test' }} />
+<Story name="Primary" />
+
+<Story name="Secret input" args={{ style: 'secret' }} />

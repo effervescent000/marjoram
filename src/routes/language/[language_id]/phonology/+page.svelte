@@ -1,6 +1,10 @@
 <script lang="ts">
-  import { Heading } from '$lib';
   import { languageStore, selectedLanguage } from '$lib/stores/language-store';
+
+  import { Heading } from '$lib';
+  import PhonologyList from '$lib/components/phonology/phonology-list.svelte';
+
+  export let data;
 
   $: language = $languageStore.find(({ id }) => $selectedLanguage === id);
 </script>
@@ -11,4 +15,5 @@
   <Heading>
     <span>{language.name} Phonology</span>
   </Heading>
+  <PhonologyList phones={data.phonology} />
 {/if}
