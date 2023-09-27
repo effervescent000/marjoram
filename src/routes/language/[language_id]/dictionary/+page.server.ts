@@ -1,10 +1,10 @@
 import { error, type Actions, type ServerLoad } from '@sveltejs/kit';
+import { invalidateAll } from '$app/navigation';
 
 import { WordSchema } from '$lib/schema/words-schema';
 
 import { DELETE, GET } from '$lib/utils/api-service';
 import { getToken } from '$lib/utils/general-utils';
-import { invalidateAll } from '$app/navigation';
 
 export const load: ServerLoad = async ({ cookies, params }) => {
   const response: unknown[] = await GET(`/words/by_language/${params.language_id}`, {
