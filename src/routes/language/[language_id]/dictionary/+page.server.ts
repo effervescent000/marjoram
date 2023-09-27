@@ -1,9 +1,10 @@
-import type { ServerLoad } from '@sveltejs/kit';
+import { error, type Actions, type ServerLoad } from '@sveltejs/kit';
 
 import { WordSchema } from '$lib/schema/words-schema';
 
-import { GET } from '$lib/utils/api-service';
+import { DELETE, GET } from '$lib/utils/api-service';
 import { getToken } from '$lib/utils/general-utils';
+import { invalidateAll } from '$app/navigation';
 
 export const load: ServerLoad = async ({ cookies, params }) => {
   const response: unknown[] = await GET(`/words/by_language/${params.language_id}`, {
@@ -11,4 +12,17 @@ export const load: ServerLoad = async ({ cookies, params }) => {
   });
   const words = response.map((x) => WordSchema.parse(x));
   return { words };
+};
+
+export const actions: Actions = {
+  deleteWord: async ({ request, cookies }) => {
+    const data = await request.formData();
+    const wordId = data.get('id')?.toString();
+    if (wordId) {
+      await DELETE(`/words/${wordId}`, { token: getToken(cookies) });
+      await invalidateAll();
+    } else {
+      throw error(400, 'Invalid word id');
+    }
+  }
 };

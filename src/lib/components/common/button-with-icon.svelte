@@ -10,9 +10,10 @@
   export let style: ButtonStyles = PLAIN;
   export let shape: ButtonShapes = PLAIN;
   export let onClick: (() => void) | undefined = undefined;
+  export let type: 'submit' | 'button' | 'reset' = 'button';
 </script>
 
-<Button {onClick} {style} {shape}>
+<Button {onClick} {style} {shape} {type}>
   <div class="flex w-full justify-center text-xs">
     <Fa {icon} class={shape === PLAIN && 'aspect-square w-4'} />
   </div>

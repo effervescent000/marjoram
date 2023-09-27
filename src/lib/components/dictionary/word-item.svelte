@@ -2,13 +2,14 @@
   import { faPencil, faX } from '@fortawesome/free-solid-svg-icons';
 
   import { goto } from '$app/navigation';
+  import { enhance } from '$app/forms';
 
   import type { Word } from '$lib/types/words-types';
 
   import { editTargetWord } from '$lib/stores/word-stores';
+  import { selectedLanguage } from '$lib/stores/language-store';
 
   import { ButtonWithIcon } from '$lib';
-  import { selectedLanguage } from '$lib/stores/language-store';
 
   export let word: Word;
 
@@ -29,5 +30,8 @@
     }}
     icon={faPencil}
   />
-  <ButtonWithIcon icon={faX} />
+  <form method="post" action="?/deleteWord" use:enhance>
+    <input type="hidden" name="id" value={word.id} />
+    <ButtonWithIcon icon={faX} type="submit" />
+  </form>
 </div>

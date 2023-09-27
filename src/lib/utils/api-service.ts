@@ -99,3 +99,29 @@ export const login = async (userData: { username?: string; password?: string }) 
     return { error: 'Error logging in' };
   }
 };
+
+const makeDeleteRequest = async (
+  url: string,
+  { params, token }: { params?: Record<string, string | number>; token?: string } = {}
+) => {
+  const fullUrl = makeUrlWithParams(url, params);
+  const headers = new Headers({ 'Content-Type': 'application/json' });
+  if (token) headers.append('Authorization', `Bearer ${token}`);
+  try {
+    await fetch(fullUrl, {
+      method: 'DELETE',
+      headers
+    });
+  } catch (error) {
+    console.log(error);
+    return { error: 'Error fetching' };
+  }
+};
+
+export const DELETE = async (
+  endpoint: string,
+  { params, token }: { params?: Record<string, string | number>; token?: string }
+) => {
+  const url = BASE_URL + endpoint;
+  await makeDeleteRequest(url, { params, token });
+};
