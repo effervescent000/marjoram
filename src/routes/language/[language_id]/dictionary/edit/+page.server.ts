@@ -14,9 +14,11 @@ export const load: ServerLoad = async ({ cookies }) => {
 };
 
 export const actions: Actions = {
-  upsert: async ({ request, cookies }) => {
+  upsert: async ({ cookies, request }) => {
     const data = await request.formData();
-    const token = getToken(cookies);
-    await POST('/word_links', { body: [getAllFormData(data)], token });
+    await POST('/words', {
+      token: getToken(cookies),
+      body: [{ ...getAllFormData(data), word_link_ids: data.getAll('word_link_ids') }]
+    });
   }
 };

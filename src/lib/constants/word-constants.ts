@@ -12,3 +12,8 @@ export const PARTS_OF_SPEECH = {
   pro: 'pronoun',
   verb: 'verb'
 };
+
+export const partOfSpeechOptions = Object.values(PARTS_OF_SPEECH).map((value) => ({
+  label: value,
+  value
+}));

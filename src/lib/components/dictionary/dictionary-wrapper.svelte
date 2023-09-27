@@ -5,12 +5,12 @@
 
   export let words: Word[];
 
-  const headers = ['Word', 'Definition', 'Part of Speech', 'Notes'];
+  const headers = ['Word', 'Definition', 'Part of Speech', 'Notes', ''];
 </script>
 
 <div class="grid grid-cols-5">
   <TableHeader {headers} />
+  {#each words as word}
+    <WordItem {word} />
+  {/each}
 </div>
-{#each words as word}
-  <WordItem {word} />
-{/each}

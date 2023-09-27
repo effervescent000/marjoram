@@ -3,7 +3,7 @@
 
   import type { WordLink } from '$lib/types/words-types';
 
-  import { PARTS_OF_SPEECH } from '$lib/constants/word-constants';
+  import { PARTS_OF_SPEECH, partOfSpeechOptions } from '$lib/constants/word-constants';
 
   import { TextInput } from '$lib';
   import Select from '../common/select.svelte';
@@ -11,8 +11,6 @@
 
   export let link: WordLink | undefined = undefined;
   export let disableEditMode: () => void;
-
-  const options = Object.values(PARTS_OF_SPEECH).map((value) => ({ label: value, value }));
 </script>
 
 <form
@@ -41,7 +39,7 @@
       name="part_of_speech"
       vertical
       label="Part of speech"
-      {options}
+      options={partOfSpeechOptions}
       initialValue={link?.part_of_speech}
     />
   </div>

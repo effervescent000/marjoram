@@ -5,7 +5,9 @@
   export let onChange: (() => void) | undefined = undefined;
   export let initialValue: string | number | undefined = undefined;
   export let vertical = false;
-  export let value = initialValue;
+  export let required = false;
+
+  let value = initialValue;
 </script>
 
 <label class={vertical ? 'flex flex-col w-min' : 'flex justify-between'}>
@@ -17,6 +19,7 @@
     bind:value
     class="bg-bg-secondary p-0.5 rounded-sm min-w-[11rem]"
     on:change={onChange}
+    {required}
   >
     {#each options as opt}
       <option value={opt.value}>{opt.label}</option>
