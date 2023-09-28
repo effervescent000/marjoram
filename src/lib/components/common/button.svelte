@@ -1,19 +1,23 @@
 <script lang="ts">
-  import { ACTION, CIRCLE, PLAIN } from '$lib/constants/styling-constants';
   import type { ButtonShapes, ButtonStyles } from '$lib/types/common-types';
 
-  export let style: ButtonStyles = 'plain';
-  export let shape: ButtonShapes = 'plain';
+  import { ACTION, CIRCLE, PLAIN, WARNING, DANGER } from '$lib/constants/styling-constants';
+
   export let onClick: (() => void) | undefined = undefined;
   export let type: 'submit' | 'button' | 'reset' = 'button';
 
+  export let style: ButtonStyles = 'plain';
+  export let shape: ButtonShapes = 'plain';
+  export let styleAppend: string | undefined = undefined;
+
   const makeButtonStyleClasses = () => {
-    if (style === PLAIN) {
-      return 'bg-bg-secondary border-accent-primary border border-solid';
-    }
-    if (style === ACTION) {
-      return 'bg-action-primary';
-    }
+    const styles = {
+      [PLAIN]: 'bg-bg-secondary border-accent-primary border border-solid',
+      [ACTION]: 'bg-action-primary',
+      [WARNING]: 'bg-warning-primary',
+      [DANGER]: 'bg-danger-primary'
+    };
+    return styles[style];
   };
 
   const makeButtonShapeClasses = () => {
@@ -28,7 +32,7 @@
 
 <button
   on:click={onClick}
-  class={`active:brightness-90 ${makeButtonShapeClasses()} ${makeButtonStyleClasses()}`}
+  class={`active:brightness-90 ${makeButtonShapeClasses()} ${makeButtonStyleClasses()} ${styleAppend}`}
   {type}
 >
   <slot />
