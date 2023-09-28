@@ -73,15 +73,15 @@ export const CONSONANTS: DescriptivePhone[] = [
     voiced: true
   },
   {
-    base_phone: 'Φ',
-    manner: 'fricative',
+    base_phone: 'p',
+    manner: 'plosive',
     place: 'bilabial',
     vocalic: false,
     voiced: false
   },
   {
-    base_phone: 'β',
-    manner: 'fricative',
+    base_phone: 'b',
+    manner: 'plosive',
     place: 'bilabial',
     vocalic: false,
     voiced: true
@@ -125,6 +125,139 @@ export const CONSONANTS: DescriptivePhone[] = [
     base_phone: 'g',
     manner: 'plosive',
     place: 'velar',
+    vocalic: false,
+    voiced: true
+  },
+  {
+    base_phone: 'q',
+    manner: 'plosive',
+    place: 'uvular',
+    vocalic: false,
+    voiced: false
+  },
+  {
+    base_phone: 'ɢ',
+    manner: 'plosive',
+    place: 'uvular',
+    vocalic: false,
+    voiced: true
+  },
+  {
+    base_phone: 'Φ',
+    manner: 'fricative',
+    place: 'bilabial',
+    vocalic: false,
+    voiced: false
+  },
+  {
+    base_phone: 'β',
+    manner: 'fricative',
+    place: 'bilabial',
+    vocalic: false,
+    voiced: true
+  },
+  {
+    base_phone: 'θ',
+    manner: 'fricative',
+    place: 'dental',
+    vocalic: false,
+    voiced: false
+  },
+  {
+    base_phone: 'ð',
+    manner: 'fricative',
+    place: 'dental',
+    vocalic: false,
+    voiced: true
+  },
+  {
+    base_phone: 's',
+    manner: 'fricative',
+    place: 'alveolar',
+    vocalic: false,
+    voiced: false
+  },
+  {
+    base_phone: 'z',
+    manner: 'fricative',
+    place: 'alveolar',
+    vocalic: false,
+    voiced: true
+  },
+  {
+    base_phone: 'ʃ',
+    manner: 'fricative',
+    place: 'post-alveolar',
+    vocalic: false,
+    voiced: false
+  },
+  {
+    base_phone: 'ʒ',
+    manner: 'fricative',
+    place: 'post-alveolar',
+    vocalic: false,
+    voiced: true
+  },
+  {
+    base_phone: 'x',
+    manner: 'fricative',
+    place: 'velar',
+    vocalic: false,
+    voiced: false
+  },
+  {
+    base_phone: 'ɣ',
+    manner: 'fricative',
+    place: 'velar',
+    vocalic: false,
+    voiced: true
+  },
+  {
+    base_phone: 'h',
+    manner: 'fricative',
+    place: 'glottal',
+    vocalic: false,
+    voiced: false
+  },
+  {
+    base_phone: 'ɦ',
+    manner: 'fricative',
+    place: 'glottal',
+    vocalic: false,
+    voiced: true
+  },
+  {
+    base_phone: 'l',
+    manner: 'lateral approximant',
+    place: 'alveolar',
+    vocalic: false,
+    voiced: true
+  },
+  {
+    base_phone: 'ʎ',
+    manner: 'lateral approximant',
+    place: 'palatal',
+    vocalic: false,
+    voiced: true
+  },
+  {
+    base_phone: 'j',
+    manner: 'approximant',
+    place: 'palatal',
+    vocalic: false,
+    voiced: true
+  },
+  {
+    base_phone: 'w',
+    manner: 'approximant',
+    place: 'velar',
+    vocalic: false,
+    voiced: true
+  },
+  {
+    base_phone: 'r',
+    manner: 'trill',
+    place: 'alveolar',
     vocalic: false,
     voiced: true
   }
