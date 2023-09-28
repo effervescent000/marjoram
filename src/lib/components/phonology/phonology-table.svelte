@@ -32,20 +32,24 @@
 
   $: {
     filteredColumnHeaders = columnHeaders.filter((header) => {
-      const result = allPhones.filter(({ place }) => place === header);
+      const result = (mode === 'select' ? allPhones : composedPhones).filter(
+        ({ place }) => place === header
+      );
       return result.length > 0;
     });
   }
 
   $: {
     filteredRowHeaders = rowHeaders.filter((header) => {
-      const result = allPhones.filter(({ manner }) => manner === header);
+      const result = (mode === 'select' ? allPhones : composedPhones).filter(
+        ({ manner }) => manner === header
+      );
       return result.length > 0;
     });
   }
 </script>
 
-<table class="border-collapse">
+<table class="border-collapse w-min">
   <thead>
     <tr>
       {#each ['', ...filteredColumnHeaders] as header}
@@ -56,7 +60,7 @@
   <tbody>
     {#each filteredRowHeaders as header}
       <tr>
-        <PhonologyTableHeader label={header} />
+        <PhonologyTableHeader compress={false} label={header} />
         {#each filteredColumnHeaders as place}
           <PhoneCellWrapper
             manner={header}

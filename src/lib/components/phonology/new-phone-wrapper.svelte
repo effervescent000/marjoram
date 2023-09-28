@@ -1,8 +1,7 @@
 <script lang="ts">
   import { createForm } from 'felte';
 
-  import { invalidate } from '$app/navigation';
-  import { page } from '$app/stores';
+  import { invalidate, invalidateAll } from '$app/navigation';
 
   import type { ComposedPhoneData, DescriptivePhone, Phone } from '$lib/types/phonology-types';
 
@@ -51,7 +50,7 @@
       });
     },
     onSuccess: async (_response, { reset }) => {
-      await invalidate($page.url.pathname);
+      await invalidateAll();
       reset();
     }
   });

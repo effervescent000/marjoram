@@ -1,8 +1,7 @@
 <script lang="ts">
   import { createForm } from 'felte';
 
-  import { invalidate } from '$app/navigation';
-  import { page } from '$app/stores';
+  import { invalidate, invalidateAll } from '$app/navigation';
 
   import type { Phone } from '$lib/types/phonology-types';
 
@@ -22,7 +21,7 @@
       await POST('/phonology', { token, body: values.phonology });
     },
     onSuccess: async () => {
-      await invalidate($page.url.pathname);
+      await invalidateAll();
     }
   });
 </script>
