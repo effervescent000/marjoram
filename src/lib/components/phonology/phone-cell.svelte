@@ -18,7 +18,7 @@
   let styles = '';
 
   $: {
-    const styleArray = ['min-w-[1.25rem] text-center'];
+    const styleArray = ['w-fit text-center'];
     if (already_used) {
       styleArray.push('bg-bg-secondary');
     } else if (selected) {

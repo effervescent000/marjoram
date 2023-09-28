@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { DescriptivePhone, Phone } from '$lib/types/phonology-types';
+  import type { ComposedPhoneData, DescriptivePhone, Phone } from '$lib/types/phonology-types';
 
   import PhoneCell from './phone-cell.svelte';
 
@@ -10,9 +10,9 @@
   export let selectedPhonesLookup: Record<string, number>;
   export let addCallback: (phone: string) => void;
   export let removeCallback: (index: number) => void;
-  export let phones: DescriptivePhone[];
+  export let phones: (ComposedPhoneData | DescriptivePhone)[];
 
-  let matches: (DescriptivePhone | undefined)[] = phones.filter(
+  let matches: (ComposedPhoneData | DescriptivePhone | undefined)[] = phones.filter(
     ({ place: thisPlace, manner: thisManner }) => thisPlace === place && thisManner === manner
   );
 

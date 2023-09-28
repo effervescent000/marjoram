@@ -12,3 +12,5 @@ export interface DescriptivePhone {
   voiced: boolean;
   vocalic: boolean;
 }
+
+export type ComposedPhoneData = DescriptivePhone & Phone;

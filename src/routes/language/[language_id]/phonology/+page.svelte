@@ -1,7 +1,7 @@
 <script lang="ts">
   import { languageStore, selectedLanguage } from '$lib/stores/language-store';
 
-  import { CONSONANTS } from '$lib/constants/phonology-constants.js';
+  import { CONSONANTS, consonantLookup } from '$lib/constants/phonology-constants.js';
 
   import { Heading } from '$lib';
   import PhonologyList from '$lib/components/phonology/phonology-list.svelte';

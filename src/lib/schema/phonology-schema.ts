@@ -6,5 +6,6 @@ export const PhoneSchema = z.object({
   quality: z.string().nullable(),
   composed_phone: z.string(),
   graph: z.string().nullable(),
-  language_id: z.number()
+  language_id: z.number(),
+  vowel: z.boolean()
 });

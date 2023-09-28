@@ -1,4 +1,5 @@
 import type { DescriptivePhone } from '$lib/types/phonology-types';
+import { lookupFromArrayByKey } from '$lib/utils/general-utils';
 
 export const QUALITIES = {
   long: 'long'
@@ -37,6 +38,41 @@ export const MANNER = [
 
 export const CONSONANTS: DescriptivePhone[] = [
   {
+    base_phone: 'm',
+    manner: 'nasal',
+    place: 'bilabial',
+    vocalic: false,
+    voiced: true
+  },
+  {
+    base_phone: 'n',
+    manner: 'nasal',
+    place: 'alveolar',
+    vocalic: false,
+    voiced: true
+  },
+  {
+    base_phone: 'ɲ',
+    manner: 'nasal',
+    place: 'palatal',
+    vocalic: false,
+    voiced: true
+  },
+  {
+    base_phone: 'ŋ',
+    manner: 'nasal',
+    place: 'velar',
+    vocalic: false,
+    voiced: true
+  },
+  {
+    base_phone: 'ɴ',
+    manner: 'nasal',
+    place: 'uvular',
+    vocalic: false,
+    voiced: true
+  },
+  {
     base_phone: 'Φ',
     manner: 'fricative',
     place: 'bilabial',
@@ -65,6 +101,20 @@ export const CONSONANTS: DescriptivePhone[] = [
     voiced: true
   },
   {
+    base_phone: 'c',
+    manner: 'plosive',
+    place: 'palatal',
+    vocalic: false,
+    voiced: false
+  },
+  {
+    base_phone: 'ɟ',
+    manner: 'plosive',
+    place: 'palatal',
+    vocalic: false,
+    voiced: true
+  },
+  {
     base_phone: 'k',
     manner: 'plosive',
     place: 'velar',
@@ -79,3 +129,8 @@ export const CONSONANTS: DescriptivePhone[] = [
     voiced: true
   }
 ];
+
+export const consonantLookup: Record<string, DescriptivePhone> = lookupFromArrayByKey(
+  CONSONANTS,
+  'base_phone'
+);

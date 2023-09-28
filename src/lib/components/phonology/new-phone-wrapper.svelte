@@ -4,7 +4,7 @@
   import { invalidate } from '$app/navigation';
   import { page } from '$app/stores';
 
-  import type { DescriptivePhone, Phone } from '$lib/types/phonology-types';
+  import type { ComposedPhoneData, DescriptivePhone, Phone } from '$lib/types/phonology-types';
 
   import { selectedLanguage } from '$lib/stores/language-store';
 
@@ -70,7 +70,9 @@
         {removeCallback}
         columnHeaders={[...PLACE]}
         rowHeaders={[...MANNER]}
-        phones={consonants}
+        allPhones={consonants}
+        mode="select"
+        {phonesInUse}
       />
     </div>
     <div class="flex flex-wrap gap-5">

@@ -1,5 +1,8 @@
 <script lang="ts">
-  import type { DescriptivePhone, Phone } from '$lib/types/phonology-types';
+  import type { ComposedPhoneData, DescriptivePhone, Phone } from '$lib/types/phonology-types';
+
+  import { consonantLookup } from '$lib/constants/phonology-constants';
+
   import PhoneCellWrapper from './phone-cell-wrapper.svelte';
   import PhonologyTableHeader from './phonology-table-header.svelte';
 
@@ -12,21 +15,31 @@
   export let selectedPhonesLookup: Record<string, number>;
   export let addCallback: (phone: string) => void;
   export let removeCallback: (index: number) => void;
-  export let phones: DescriptivePhone[];
+  export let allPhones: DescriptivePhone[];
+  export let phonesInUse: Phone[];
 
   let filteredColumnHeaders = [...columnHeaders];
   let filteredRowHeaders = [...rowHeaders];
 
+  let composedPhones: ComposedPhoneData[] = [];
+
+  $: {
+    composedPhones = phonesInUse.map((phone) => ({
+      ...phone,
+      ...consonantLookup[phone.base_phone]
+    }));
+  }
+
   $: {
     filteredColumnHeaders = columnHeaders.filter((header) => {
-      const result = phones.filter(({ place }) => place === header);
+      const result = allPhones.filter(({ place }) => place === header);
       return result.length > 0;
     });
   }
 
   $: {
     filteredRowHeaders = rowHeaders.filter((header) => {
-      const result = phones.filter(({ manner }) => manner === header);
+      const result = allPhones.filter(({ manner }) => manner === header);
       return result.length > 0;
     });
   }
@@ -52,7 +65,7 @@
             {removeCallback}
             {phonesInUseLookup}
             {selectedPhonesLookup}
-            {phones}
+            phones={mode === 'select' ? allPhones : composedPhones}
           />
         {/each}
       </tr>
