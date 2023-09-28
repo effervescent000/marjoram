@@ -12,6 +12,9 @@ export default {
         "action-primary": "#AFDEB7",
         "warning-primary": "#DCA78C",
         "danger-primary": "#DB7373"
+      },
+      transitionProperty: {
+        height: "max-height, height"
       }
     }
   },

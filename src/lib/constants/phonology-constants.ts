@@ -1,4 +1,5 @@
 import type { DescriptivePhone } from '$lib/types/phonology-types';
+
 import { lookupFromArrayByKey } from '$lib/utils/general-utils';
 
 export const QUALITIES = {

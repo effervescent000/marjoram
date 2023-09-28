@@ -1,7 +1,7 @@
 <script lang="ts">
   import { languageStore, selectedLanguage } from '$lib/stores/language-store';
 
-  import { CONSONANTS, consonantLookup } from '$lib/constants/phonology-constants.js';
+  import { CONSONANTS } from '$lib/constants/phonology-constants.js';
 
   import { Heading } from '$lib';
   import PhonologyList from '$lib/components/phonology/phonology-list.svelte';
@@ -18,7 +18,7 @@
   <Heading>
     <span>{language.name} Phonology</span>
   </Heading>
-  <div class="flex flex-col gap-10">
+  <div>
     <NewPhoneWrapper token={data.token} consonants={CONSONANTS} phonesInUse={data.phonology} />
     <PhonologyList phones={data.phonology} token={data.token} />
   </div>

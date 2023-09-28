@@ -1,11 +1,10 @@
 <script lang="ts">
   import { createForm } from 'felte';
-
-  import { invalidate, invalidateAll } from '$app/navigation';
-
-  import type { ComposedPhoneData, DescriptivePhone, Phone } from '$lib/types/phonology-types';
+  import { invalidateAll } from '$app/navigation';
 
   import { selectedLanguage } from '$lib/stores/language-store';
+
+  import type { DescriptivePhone, Phone } from '$lib/types/phonology-types';
 
   import { PLACE, MANNER } from '$lib/constants/phonology-constants';
 
@@ -14,6 +13,7 @@
   import PhoneCard from './phone-card.svelte';
   import Button from '../common/button.svelte';
   import PhonologyTable from './phonology-table.svelte';
+  import LilPadder from '../common/lil-padder.svelte';
 
   // props
   export let token: string | undefined = undefined;
@@ -22,6 +22,7 @@
 
   // STATE
   let consonantMode = true;
+  let expanded = phonesInUse.length < 5 ? true : false;
 
   $: selectedPhones = $data.phones;
   $: selectedPhonesLookup = selectedPhones.reduce(
@@ -59,7 +60,20 @@
   const addCallback = (phone: string) => addField('phones', phone);
 </script>
 
-<form use:form>
+<Button onClick={() => (expanded = !expanded)}>
+  {#if expanded}
+    Done adding
+  {:else}
+    Add new phones
+  {/if}
+</Button>
+<LilPadder size="xs" />
+<form
+  use:form
+  class={`transition-height duration-1000 ease-in-out overflow-hidden ${
+    !expanded ? 'max-h-[0px]' : 'max-h-[1000px]'
+  }`}
+>
   <div class="flex gap-10">
     <div>
       <PhonologyTable
@@ -81,4 +95,5 @@
     </div>
   </div>
   <Button style="action" type="submit">Save New</Button>
+  <LilPadder size="m" />
 </form>
