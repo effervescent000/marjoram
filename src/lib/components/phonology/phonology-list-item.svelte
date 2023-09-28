@@ -8,6 +8,7 @@
   import { HiddenInput, Select } from '$lib';
   import TextInput from '../common/text-input.svelte';
 
+  // PROPS
   export let phone: Phone;
   export let arrayLocation: string;
 </script>
@@ -18,13 +19,14 @@
   value={phone.language_id || $page.params.language_id}
 />
 <HiddenInput name={arrayLocation + '.base_phone'} value={phone.base_phone} />
-<div class="flex">
+<div class="flex justify-around">
   <TextInput
     name={arrayLocation + '.composed_phone'}
     initialValue={phone.composed_phone}
     style="secret"
     disabled
     size="xs"
+    styleAppend="text-center"
   />
   <TextInput
     name={arrayLocation + '.graph'}
@@ -32,6 +34,7 @@
     style="secret"
     disabled
     size="xs"
+    styleAppend="text-center"
   />
 </div>
 <Select

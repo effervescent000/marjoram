@@ -31,6 +31,7 @@
     <span>{label}</span>
   {/if}
   <select {disabled} {name} bind:value class={getStyles()} on:change={onChange} {required}>
+    <option value={undefined}>--</option>
     {#each options as opt}
       <option value={opt.value}>{opt.label}</option>
     {/each}

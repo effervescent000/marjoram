@@ -18,6 +18,8 @@
   <Heading>
     <span>{language.name} Phonology</span>
   </Heading>
-  <NewPhoneWrapper token={data.token} consonants={CONSONANTS} />
-  <PhonologyList phones={data.phonology} token={data.token} />
+  <div class="flex flex-col gap-10">
+    <NewPhoneWrapper token={data.token} consonants={CONSONANTS} phonesInUse={data.phonology} />
+    <PhonologyList phones={data.phonology} token={data.token} />
+  </div>
 {/if}

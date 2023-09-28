@@ -1,22 +1,41 @@
 <script lang="ts">
   import { createForm } from 'felte';
 
-  import type { DescriptivePhone } from '$lib/types/phonology-types';
+  import { invalidate } from '$app/navigation';
+  import { page } from '$app/stores';
+
+  import type { DescriptivePhone, Phone } from '$lib/types/phonology-types';
 
   import { selectedLanguage } from '$lib/stores/language-store';
 
+  import { PLACE, MANNER } from '$lib/constants/phonology-constants';
+
   import { POST } from '$lib/utils/api-service';
 
-  import PhoneCell from './phone-cell.svelte';
   import PhoneCard from './phone-card.svelte';
-  import { invalidateAll } from '$app/navigation';
   import Button from '../common/button.svelte';
+  import PhonologyTable from './phonology-table.svelte';
 
+  // props
   export let token: string | undefined = undefined;
   export let consonants: DescriptivePhone[];
+  export let phonesInUse: Phone[];
 
+  // STATE
   let consonantMode = true;
 
+  $: selectedPhones = $data.phones;
+  $: selectedPhonesLookup = selectedPhones.reduce(
+    (acc, cur, i) => ({ ...acc, [cur]: i }),
+    {} as Record<string, number>
+  );
+
+  $: phonesInUseLookup = phonesInUse.reduce(
+    (acc, cur) => ({ ...acc, [cur.base_phone]: cur }),
+    {} as Record<string, Phone>
+  );
+
+  // LOGIC
   const { form, data, addField, unsetField } = createForm({
     initialValues: {
       phones: [] as string[]
@@ -31,39 +50,28 @@
         }))
       });
     },
-    onSuccess: async (response, { reset }) => {
-      await invalidateAll();
+    onSuccess: async (_response, { reset }) => {
+      await invalidate($page.url.pathname);
       reset();
     }
   });
 
-  $: selectedPhones = $data.phones;
-  $: selectedPhonesLookup = selectedPhones.reduce(
-    (acc, cur, i) => ({ ...acc, [cur]: i }),
-    {} as Record<string, number>
-  );
-
   const removeCallback = (index: number) => unsetField(`phones.${index}`);
+  const addCallback = (phone: string) => addField('phones', phone);
 </script>
 
 <form use:form>
   <div class="flex gap-10">
     <div>
-      <table>
-        <tbody>
-          <tr>
-            {#each consonants as { base_phone }}
-              <PhoneCell
-                {base_phone}
-                already_used={false}
-                addCallback={() => addField('phones', base_phone)}
-                {selectedPhonesLookup}
-                {removeCallback}
-              />
-            {/each}
-          </tr>
-        </tbody>
-      </table>
+      <PhonologyTable
+        {phonesInUseLookup}
+        {selectedPhonesLookup}
+        {addCallback}
+        {removeCallback}
+        columnHeaders={[...PLACE]}
+        rowHeaders={[...MANNER]}
+        phones={consonants}
+      />
     </div>
     <div class="flex flex-wrap gap-5">
       {#each selectedPhones as phone, i}

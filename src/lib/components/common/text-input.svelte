@@ -12,6 +12,7 @@
   export let vertical = false;
   export let style: InputStyles = 'plain';
   export let size: Sizes = 'm';
+  export let styleAppend: string = '';
 
   let value = initialValue;
 
@@ -33,6 +34,8 @@
     };
 
     styles.push(widthsPerSize[size]);
+
+    styles.push(styleAppend);
 
     return styles.join(' ');
   };
