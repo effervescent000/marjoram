@@ -10,6 +10,10 @@ export const navRoutes: (language_id: number) => Route[] = (language_id: number)
     path: `/language/${language_id}`,
     children: [
       {
+        label: 'Phonology',
+        path: '/phonology'
+      },
+      {
         label: 'Dictionary',
         path: '/dictionary'
       }

@@ -6,11 +6,11 @@
   import type { Phone } from '$lib/types/phonology-types';
 
   import { POST } from '$lib/utils/api-service';
+  import { nullifyEmptyStrings } from '$lib/utils/general-utils';
 
   import Button from '../common/button.svelte';
   import PhonologyListItem from './phonology-list-item.svelte';
   import { TableHeader } from '$lib';
-  import { nullifyEmptyStrings } from '$lib/utils/general-utils';
 
   // PROPS
   export let phones: Array<Partial<Phone>>;
