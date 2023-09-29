@@ -12,6 +12,8 @@
     CONSONANTS,
     FRONTNESS,
     HEIGHT,
+    vowelLookup,
+    consonantLookup,
     VOWELS
   } from '$lib/constants/phonology-constants';
 
@@ -33,6 +35,8 @@
   $: selectedPhones = $data.phones;
 
   // LOGIC
+  const compiledPhones = { ...consonantLookup, ...vowelLookup };
+
   const { form, data, addField, unsetField } = createForm({
     initialValues: {
       phones: [] as string[]
@@ -45,7 +49,7 @@
             phonology: values.phones.map((phone) => ({
               base_phone: phone,
               language_id: $selectedLanguage,
-              vowel: !consonantMode
+              vowel: compiledPhones[phone].vocalic
             })),
             mode: 'insert'
           }
@@ -62,13 +66,25 @@
   const addCallback = (phone: string) => addField('phones', phone);
 </script>
 
-<Button onClick={() => (expanded = !expanded)}>
+<div>
+  <Button onClick={() => (expanded = !expanded)}>
+    {#if expanded}
+      Done adding
+    {:else}
+      Add new phones
+    {/if}
+  </Button>
   {#if expanded}
-    Done adding
-  {:else}
-    Add new phones
+    <Button onClick={() => (consonantMode = !consonantMode)}>
+      {#if consonantMode}
+        Swap to vowels
+      {:else}
+        Swap to consonants
+      {/if}
+    </Button>
   {/if}
-</Button>
+</div>
+
 <LilPadder size="xs" />
 <form
   use:form
@@ -77,27 +93,32 @@
   }`}
 >
   <div class="flex gap-10 items-start">
-    <PhonologyTable
-      {addCallback}
-      {removeCallback}
-      columnHeaders={[...PLACE]}
-      rowHeaders={[...MANNER]}
-      allPhones={CONSONANTS}
-      renderMode="select"
-      {phonesInUse}
-      {selectedPhones}
-    />
-    <PhonologyTable
-      {phonesInUse}
-      {selectedPhones}
-      {addCallback}
-      {removeCallback}
-      columnHeaders={[...FRONTNESS]}
-      rowHeaders={[...HEIGHT]}
-      renderMode="select"
-      allPhones={VOWELS}
-      consonantMode={false}
-    />
+    {#if consonantMode}
+      <PhonologyTable
+        {addCallback}
+        {removeCallback}
+        columnHeaders={[...PLACE]}
+        rowHeaders={[...MANNER]}
+        allPhones={CONSONANTS}
+        renderMode="select"
+        {phonesInUse}
+        {selectedPhones}
+        {consonantMode}
+      />
+    {:else}
+      <PhonologyTable
+        {phonesInUse}
+        {selectedPhones}
+        {addCallback}
+        {removeCallback}
+        columnHeaders={[...FRONTNESS]}
+        rowHeaders={[...HEIGHT]}
+        renderMode="select"
+        allPhones={VOWELS}
+        {consonantMode}
+      />
+    {/if}
+
     <div class="flex flex-wrap gap-5 py-10">
       {#each selectedPhones as phone, i}
         <PhoneCard base_phone={phone} index={i} removeCallback={() => removeCallback(i)} />

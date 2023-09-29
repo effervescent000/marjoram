@@ -8,7 +8,7 @@
 
   // PROPS
   export let renderMode: 'select' | 'display' = 'select';
-  export let consonantMode = true;
+  export let consonantMode: boolean;
   export let columnHeaders: string[];
   export let rowHeaders: string[];
 

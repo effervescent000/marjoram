@@ -13,6 +13,7 @@ export interface DescriptivePhone {
   frontness?: (typeof FRONTNESS)[number];
   voiced: boolean;
   vocalic: boolean;
+  rounded?: boolean;
 }
 
 export type ComposedPhoneData = DescriptivePhone & Phone;

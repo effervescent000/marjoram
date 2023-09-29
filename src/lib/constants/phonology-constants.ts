@@ -287,6 +287,68 @@ export const VOWELS: DescriptivePhone[] = [
     vocalic: true,
     voiced: true,
     height: 'low',
-    frontness: 'front'
+    frontness: 'near-front'
+  },
+  {
+    base_phone: 'ä',
+    vocalic: true,
+    voiced: true,
+    height: 'low',
+    frontness: 'central'
+  },
+  {
+    base_phone: 'i',
+    height: 'high',
+    frontness: 'front',
+    vocalic: true,
+    voiced: true
+  },
+  {
+    base_phone: 'y',
+    height: 'high',
+    frontness: 'front',
+    vocalic: true,
+    voiced: true,
+    rounded: true
+  },
+  {
+    base_phone: 'e',
+    height: 'near-high',
+    frontness: 'front',
+    vocalic: true,
+    voiced: true
+  },
+  {
+    base_phone: 'ɛ',
+    height: 'low-mid',
+    frontness: 'front',
+    vocalic: true,
+    voiced: true
+  },
+  {
+    base_phone: 'æ',
+    height: 'near-low',
+    frontness: 'front',
+    vocalic: true,
+    voiced: true
+  },
+  {
+    base_phone: 'ɪ',
+    height: 'near-high',
+    frontness: 'near-front',
+    vocalic: true,
+    voiced: true
+  },
+  {
+    base_phone: 'o',
+    height: 'near-high',
+    frontness: 'back',
+    vocalic: true,
+    voiced: true
   }
 ];
+
+export const vowelLookup: Record<string, DescriptivePhone> = lookupFromArrayByKey(
+  VOWELS,
+  'base_phone'
+);

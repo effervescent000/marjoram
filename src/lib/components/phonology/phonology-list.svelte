@@ -19,6 +19,10 @@
   // STATE
   let editing = false;
 
+  $: {
+    data.set({ phonology: [...phones] });
+  }
+
   // LOGIC
   const { form, reset, addField, unsetField, data } = createForm({
     onSubmit: async (values) => {
@@ -26,7 +30,7 @@
         token,
         body: [
           {
-            phonology: values.phonology.map((value) => nullifyEmptyStrings(value)),
+            phonology: values.phonology.map((value: Phone) => nullifyEmptyStrings(value)),
             mode: 'replace'
           }
         ]
@@ -35,9 +39,6 @@
     onSuccess: async () => {
       await invalidateAll();
       editing = false;
-    },
-    initialValues: {
-      phonology: [...phones]
     }
   });
 

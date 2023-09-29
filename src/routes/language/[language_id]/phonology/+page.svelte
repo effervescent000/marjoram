@@ -19,7 +19,7 @@
     <span>{language.name} Phonology</span>
   </Heading>
   <div>
-    <NewPhoneWrapper token={data.token} consonants={CONSONANTS} phonesInUse={data.phonology} />
+    <NewPhoneWrapper token={data.token} phonesInUse={data.phonology} />
     <PhonologyList phones={data.phonology} token={data.token} />
   </div>
 {/if}
