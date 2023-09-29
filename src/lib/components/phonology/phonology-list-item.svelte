@@ -11,6 +11,7 @@
   // PROPS
   export let phone: Phone;
   export let arrayLocation: string;
+  export let editing: boolean;
 </script>
 
 <HiddenInput name={arrayLocation + '.id'} value={phone.id} />
@@ -31,15 +32,16 @@
   <TextInput
     name={arrayLocation + '.graph'}
     initialValue={phone.graph || phone.composed_phone}
-    style="secret"
-    disabled
+    style={!editing ? 'secret' : 'plain'}
+    disabled={!editing}
     size="xs"
     styleAppend="text-center"
   />
 </div>
 <Select
   name={arrayLocation + '.quality'}
+  disabled={!editing}
   initialValue={phone.quality}
   options={Object.values(QUALITIES).map((val) => ({ label: val, value: val }))}
-  style="secret"
+  style={!editing ? 'secret' : 'plain'}
 />

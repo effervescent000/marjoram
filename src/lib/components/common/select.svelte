@@ -12,25 +12,26 @@
   export let vertical = false;
   export let style: InputStyles = 'plain';
 
+  let styles = '';
   let value = initialValue;
 
-  const getStyles = () => {
-    const styles = ['rounded-sm'];
+  $: {
+    const styleArray = ['rounded-sm'];
     if (style !== 'secret') {
-      styles.push('bg-bg-secondary p-0.5 min-w-[11rem]');
+      styleArray.push('bg-bg-secondary p-0.5');
     } else {
-      styles.push('bg-transparent appearance-none');
+      styleArray.push('bg-transparent appearance-none');
     }
 
-    return styles.join(' ');
-  };
+    styles = styleArray.join(' ');
+  }
 </script>
 
 <label class={vertical ? 'flex flex-col w-min' : 'flex justify-between'}>
   {#if label}
     <span>{label}</span>
   {/if}
-  <select {disabled} {name} bind:value class={getStyles()} on:change={onChange} {required}>
+  <select {disabled} {name} bind:value class={styles} on:change={onChange} {required}>
     <option value={undefined}>--</option>
     {#each options as opt}
       <option value={opt.value}>{opt.label}</option>

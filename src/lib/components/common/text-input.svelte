@@ -15,14 +15,15 @@
   export let styleAppend: string = '';
 
   let value = initialValue;
+  let styles = '';
 
-  const getStyles = () => {
-    const styles = ['rounded-sm'];
+  $: {
+    const styleArray = ['rounded-sm'];
 
     if (style !== 'secret') {
-      styles.push('border-accent-primary border border-solid disabled:brightness-75');
+      styleArray.push('border-accent-primary border border-solid disabled:brightness-75');
     } else {
-      styles.push('bg-transparent');
+      styleArray.push('bg-transparent');
     }
 
     const widthsPerSize: Record<Sizes, string> = {
@@ -33,25 +34,17 @@
       xl: ''
     };
 
-    styles.push(widthsPerSize[size]);
+    styleArray.push(widthsPerSize[size]);
 
-    styles.push(styleAppend);
+    styleArray.push(styleAppend);
 
-    return styles.join(' ');
-  };
+    styles = styleArray.join(' ');
+  }
 </script>
 
 <label class={vertical ? 'flex flex-col w-min' : 'flex gap-2 justify-between'}>
   {#if label}
     <span>{label}</span>
   {/if}
-  <input
-    on:input={onInput}
-    {disabled}
-    class={getStyles()}
-    type="text"
-    {name}
-    bind:value
-    {required}
-  />
+  <input on:input={onInput} {disabled} class={styles} type="text" {name} bind:value {required} />
 </label>
