@@ -1,6 +1,5 @@
 <script lang="ts">
   import { createForm } from 'felte';
-
   import { invalidateAll } from '$app/navigation';
 
   import type { Phone } from '$lib/types/phonology-types';

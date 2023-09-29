@@ -11,11 +11,17 @@ export const navRoutes: (language_id: number) => Route[] = (language_id: number)
     children: [
       {
         label: 'Phonology',
-        path: '/phonology'
+        path: '/phonology',
+        requiresLogin: true
       },
       {
         label: 'Dictionary',
         path: '/dictionary'
+      },
+      {
+        label: 'Pronunciation Rules',
+        path: '/spelling-changes',
+        requiresLogin: true
       }
     ]
   },

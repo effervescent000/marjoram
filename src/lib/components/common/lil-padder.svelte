@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Sizes } from '$lib/types/common-types';
 
-  export let size: Sizes;
+  export let size: Sizes = 'm';
 
   const sizeLookup: Record<Sizes, string> = {
     xs: 'h-4',
