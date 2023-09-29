@@ -7,21 +7,32 @@
   import PhonologyTableHeader from './phonology-table-header.svelte';
 
   // PROPS
-  export let mode: 'select' | 'display' = 'select';
+  export let renderMode: 'select' | 'display' = 'select';
+  export let consonantMode = true;
   export let columnHeaders: string[];
   export let rowHeaders: string[];
 
-  export let phonesInUseLookup: Record<string, Phone>;
-  export let selectedPhonesLookup: Record<string, number>;
   export let addCallback: (phone: string) => void;
   export let removeCallback: (index: number) => void;
   export let allPhones: DescriptivePhone[];
   export let phonesInUse: Phone[];
+  export let selectedPhones: string[];
 
+  // STATE
   let filteredColumnHeaders = [...columnHeaders];
   let filteredRowHeaders = [...rowHeaders];
 
   let composedPhones: ComposedPhoneData[] = [];
+
+  $: selectedPhonesLookup = selectedPhones.reduce(
+    (acc, cur, i) => ({ ...acc, [cur]: i }),
+    {} as Record<string, number>
+  );
+
+  $: phonesInUseLookup = phonesInUse.reduce(
+    (acc, cur) => ({ ...acc, [cur.base_phone]: cur }),
+    {} as Record<string, Phone>
+  );
 
   $: {
     composedPhones = phonesInUse.map((phone) => ({
@@ -32,8 +43,8 @@
 
   $: {
     filteredColumnHeaders = columnHeaders.filter((header) => {
-      const result = (mode === 'select' ? allPhones : composedPhones).filter(
-        ({ place }) => place === header
+      const result = (renderMode === 'select' ? allPhones : composedPhones).filter(
+        ({ place, frontness }) => (!consonantMode ? frontness === header : place === header)
       );
       return result.length > 0;
     });
@@ -41,8 +52,8 @@
 
   $: {
     filteredRowHeaders = rowHeaders.filter((header) => {
-      const result = (mode === 'select' ? allPhones : composedPhones).filter(
-        ({ manner }) => manner === header
+      const result = (renderMode === 'select' ? allPhones : composedPhones).filter(
+        ({ manner, height }) => (!consonantMode ? height === header : manner === header)
       );
       return result.length > 0;
     });
@@ -61,15 +72,16 @@
     {#each filteredRowHeaders as header}
       <tr>
         <PhonologyTableHeader compress={false} label={header} />
-        {#each filteredColumnHeaders as place}
+        {#each filteredColumnHeaders as x}
           <PhoneCellWrapper
-            manner={header}
-            {place}
+            y={header}
+            {x}
             {addCallback}
             {removeCallback}
             {phonesInUseLookup}
             {selectedPhonesLookup}
-            phones={mode === 'select' ? allPhones : composedPhones}
+            phones={renderMode === 'select' ? allPhones : composedPhones}
+            {consonantMode}
           />
         {/each}
       </tr>

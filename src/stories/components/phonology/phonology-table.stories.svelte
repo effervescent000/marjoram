@@ -9,7 +9,14 @@
 
 <script lang="ts">
   import { Story, Template } from '@storybook/addon-svelte-csf';
-  import { CONSONANTS, MANNER, PLACE } from '$lib/constants/phonology-constants';
+  import {
+    CONSONANTS,
+    FRONTNESS,
+    HEIGHT,
+    MANNER,
+    PLACE,
+    VOWELS
+  } from '$lib/constants/phonology-constants';
 
   const makePhones = (phones: string[]) => phones.map((phone) => ({ base_phone: phone }));
 </script>
@@ -24,9 +31,8 @@
     columnHeaders: PLACE,
     rowHeaders: MANNER,
     allPhones: CONSONANTS,
-    selectedPhonesLookup: {},
-    phonesInUseLookup: {},
-    phonesInUse: []
+    phonesInUse: [],
+    selectedPhones: []
   }}
 />
 
@@ -36,9 +42,20 @@
     columnHeaders: PLACE,
     rowHeaders: MANNER,
     allPhones: CONSONANTS,
-    selectedPhonesLookup: {},
-    phonesInUseLookup: {},
+    selectedPhones: [],
     phonesInUse: makePhones(['k', 't', 'p', 'd']),
     mode: 'display'
+  }}
+/>
+
+<Story
+  name="Select mode (vowels)"
+  args={{
+    columnHeaders: FRONTNESS,
+    rowHeaders: HEIGHT,
+    allPhones: VOWELS,
+    phonesInUse: [],
+    selectedPhones: [],
+    consonantMode: false
   }}
 />

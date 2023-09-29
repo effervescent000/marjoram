@@ -6,7 +6,14 @@
 
   import type { DescriptivePhone, Phone } from '$lib/types/phonology-types';
 
-  import { PLACE, MANNER } from '$lib/constants/phonology-constants';
+  import {
+    PLACE,
+    MANNER,
+    CONSONANTS,
+    FRONTNESS,
+    HEIGHT,
+    VOWELS
+  } from '$lib/constants/phonology-constants';
 
   import { POST } from '$lib/utils/api-service';
 
@@ -17,7 +24,6 @@
 
   // props
   export let token: string | undefined = undefined;
-  export let consonants: DescriptivePhone[];
   export let phonesInUse: Phone[];
 
   // STATE
@@ -25,15 +31,6 @@
   let expanded = phonesInUse.length < 5 ? true : false;
 
   $: selectedPhones = $data.phones;
-  $: selectedPhonesLookup = selectedPhones.reduce(
-    (acc, cur, i) => ({ ...acc, [cur]: i }),
-    {} as Record<string, number>
-  );
-
-  $: phonesInUseLookup = phonesInUse.reduce(
-    (acc, cur) => ({ ...acc, [cur.base_phone]: cur }),
-    {} as Record<string, Phone>
-  );
 
   // LOGIC
   const { form, data, addField, unsetField } = createForm({
@@ -79,21 +76,29 @@
     !expanded ? 'max-h-[0px]' : 'max-h-[1000px]'
   }`}
 >
-  <div class="flex gap-10">
-    <div>
-      <PhonologyTable
-        {phonesInUseLookup}
-        {selectedPhonesLookup}
-        {addCallback}
-        {removeCallback}
-        columnHeaders={[...PLACE]}
-        rowHeaders={[...MANNER]}
-        allPhones={consonants}
-        mode="select"
-        {phonesInUse}
-      />
-    </div>
-    <div class="flex flex-wrap gap-5">
+  <div class="flex gap-10 items-start">
+    <PhonologyTable
+      {addCallback}
+      {removeCallback}
+      columnHeaders={[...PLACE]}
+      rowHeaders={[...MANNER]}
+      allPhones={CONSONANTS}
+      renderMode="select"
+      {phonesInUse}
+      {selectedPhones}
+    />
+    <PhonologyTable
+      {phonesInUse}
+      {selectedPhones}
+      {addCallback}
+      {removeCallback}
+      columnHeaders={[...FRONTNESS]}
+      rowHeaders={[...HEIGHT]}
+      renderMode="select"
+      allPhones={VOWELS}
+      consonantMode={false}
+    />
+    <div class="flex flex-wrap gap-5 py-10">
       {#each selectedPhones as phone, i}
         <PhoneCard base_phone={phone} index={i} removeCallback={() => removeCallback(i)} />
       {/each}

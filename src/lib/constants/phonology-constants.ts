@@ -6,6 +6,18 @@ export const QUALITIES = {
   long: 'long'
 };
 
+export const HEIGHT = [
+  'high',
+  'near-high',
+  'high-mid',
+  'mid',
+  'low-mid',
+  'near-low',
+  'low'
+] as const;
+
+export const FRONTNESS = ['front', 'near-front', 'central', 'near-back', 'back'] as const;
+
 export const PLACE = [
   'bilabial',
   'labiodental',
@@ -268,3 +280,13 @@ export const consonantLookup: Record<string, DescriptivePhone> = lookupFromArray
   CONSONANTS,
   'base_phone'
 );
+
+export const VOWELS: DescriptivePhone[] = [
+  {
+    base_phone: 'a',
+    vocalic: true,
+    voiced: true,
+    height: 'low',
+    frontness: 'front'
+  }
+];

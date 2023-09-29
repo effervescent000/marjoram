@@ -3,8 +3,9 @@
 
   import PhoneCell from './phone-cell.svelte';
 
-  export let place: string;
-  export let manner: string;
+  export let x: string;
+  export let y: string;
+  export let consonantMode: boolean;
 
   export let phonesInUseLookup: Record<string, Phone>;
   export let selectedPhonesLookup: Record<string, number>;
@@ -13,7 +14,8 @@
   export let phones: (ComposedPhoneData | DescriptivePhone)[];
 
   let matches: (ComposedPhoneData | DescriptivePhone | undefined)[] = phones.filter(
-    ({ place: thisPlace, manner: thisManner }) => thisPlace === place && thisManner === manner
+    ({ place, manner, height, frontness }) =>
+      consonantMode ? place === x && manner === y : height === y && frontness === x
   );
 
   $: {
