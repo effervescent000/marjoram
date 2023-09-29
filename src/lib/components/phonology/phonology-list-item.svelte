@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { faCopy, faX } from '@fortawesome/free-solid-svg-icons';
   import { page } from '$app/stores';
 
   import type { Phone } from '$lib/types/phonology-types';
@@ -7,11 +8,17 @@
 
   import { HiddenInput, Select } from '$lib';
   import TextInput from '../common/text-input.svelte';
+  import ButtonWithIcon from '../common/button-with-icon.svelte';
 
   // PROPS
-  export let phone: Phone;
-  export let arrayLocation: string;
+  export let phone: Partial<Phone>;
+  export let index: number;
   export let editing: boolean;
+
+  export let addCallback: (index: number, values: Partial<Phone>) => void;
+  export let removeCallback: (index: number) => void;
+
+  $: arrayLocation = `phonology.${index}`;
 </script>
 
 <HiddenInput name={arrayLocation + '.id'} value={phone.id} />
@@ -45,3 +52,9 @@
   options={Object.values(QUALITIES).map((val) => ({ label: val, value: val }))}
   style={!editing ? 'secret' : 'plain'}
 />
+<div>
+  {#if editing}
+    <ButtonWithIcon icon={faCopy} onClick={() => addCallback(index, phone)} />
+    <ButtonWithIcon icon={faX} style="warning" onClick={() => removeCallback(index)} />
+  {/if}
+</div>

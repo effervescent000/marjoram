@@ -7,3 +7,9 @@ export const getAllFormData = <T>(formData: FormData) =>
 
 export const lookupFromArrayByKey = (array: Record<string, any>[], key: string) =>
   array.reduce((acc, cur) => ({ ...acc, [cur[key]]: cur }), {});
+
+export const nullifyEmptyStrings = (object: Record<string, any>) =>
+  Object.entries(object).reduce(
+    (acc, [key, value]) => ({ ...acc, [key]: value === '' ? null : value }),
+    {}
+  );

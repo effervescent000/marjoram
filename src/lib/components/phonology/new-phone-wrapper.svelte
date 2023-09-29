@@ -43,11 +43,16 @@
     onSubmit: async (values) => {
       await POST('/phonology', {
         token,
-        body: values.phones.map((phone) => ({
-          base_phone: phone,
-          language_id: $selectedLanguage,
-          vowel: !consonantMode
-        }))
+        body: [
+          {
+            phonology: values.phones.map((phone) => ({
+              base_phone: phone,
+              language_id: $selectedLanguage,
+              vowel: !consonantMode
+            })),
+            mode: 'insert'
+          }
+        ]
       });
     },
     onSuccess: async (_response, { reset }) => {
