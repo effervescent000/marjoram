@@ -9,6 +9,6 @@
 </script>
 
 <Heading>
-  <span>{$editTargetWord ? 'Edit' : 'Add'} word</span>
+  <span>Add word</span>
 </Heading>
 <WordEdit globalWordLinks={data.wordLinks} language_id={$selectedLanguage} />
