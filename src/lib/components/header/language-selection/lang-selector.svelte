@@ -13,5 +13,5 @@
 </script>
 
 <form method="post" action="?/selectLanguage" bind:this={form} use:enhance>
-  <Select name="language" {options} onChange={() => form.requestSubmit()} />
+  <Select testid="lang-selector" name="language" {options} onChange={() => form.requestSubmit()} />
 </form>

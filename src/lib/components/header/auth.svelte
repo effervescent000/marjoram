@@ -12,12 +12,12 @@
 
 {#if !$userStore}
   <form class="flex flex-col" method="post" action={`?/${signUp ? 'signUp' : 'login'}`} use:enhance>
-    <TextInput label="Username" name="username" />
-    <PasswordInput label="Password" name="password" />
+    <TextInput label="Username" name="username" testid="auth-username" />
+    <PasswordInput testid="auth-password" label="Password" name="password" />
     {#if signUp}
-      <PasswordInput label="Verify Password" name="verify" />
+      <PasswordInput testid="auth-confirm" label="Verify Password" name="verify" />
     {/if}
-    <Button type="submit">{signUp ? 'Sign up' : 'Login'}</Button>
+    <Button testid="auth-submit" type="submit">{signUp ? 'Sign up' : 'Login'}</Button>
   </form>
 {:else}
   <span>Hello, {$userStore.username}!</span>

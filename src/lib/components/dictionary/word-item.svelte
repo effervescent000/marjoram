@@ -6,7 +6,6 @@
 
   import type { Word } from '$lib/types/words-types';
 
-  import { editTargetWord } from '$lib/stores/word-stores';
   import { selectedLanguage } from '$lib/stores/language-store';
 
   import { ButtonWithIcon } from '$lib';
@@ -25,13 +24,12 @@
 <div class="flex items-center">
   <ButtonWithIcon
     onClick={() => {
-      editTargetWord.set(word);
       goto(`/language/${$selectedLanguage}/dictionary/edit/${word.id}`);
     }}
     icon={faPencil}
   />
   <form method="post" action="?/deleteWord" use:enhance>
     <input type="hidden" name="id" value={word.id} />
-    <ButtonWithIcon icon={faX} style="danger" type="submit" />
+    <ButtonWithIcon testid={`${word.word}-delete-btn`} icon={faX} style="danger" type="submit" />
   </form>
 </div>

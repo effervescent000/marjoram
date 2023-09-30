@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { editTargetWord } from '$lib/stores/word-stores.js';
   import { selectedLanguage } from '$lib/stores/language-store.js';
 
   import WordEdit from '$lib/components/dictionary/word-edit.svelte';

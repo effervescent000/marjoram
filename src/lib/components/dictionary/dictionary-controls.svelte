@@ -15,7 +15,11 @@
     onInput={(event) =>
       wordFilters.update((oldValue) => ({ ...oldValue, definition: event.target?.value }))}
   />
-  <Button style="action" onClick={() => goto(`/language/${$selectedLanguage}/dictionary/edit`)}>
+  <Button
+    testid="add-word-btn"
+    style="action"
+    onClick={() => goto(`/language/${$selectedLanguage}/dictionary/edit`)}
+  >
     Add new word
   </Button>
 </div>

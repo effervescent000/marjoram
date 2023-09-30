@@ -8,6 +8,7 @@
   export let required = false;
   export let disabled = false;
   export let onInput: FormEventHandler<HTMLInputElement> | undefined = undefined;
+  export let testid: string | undefined = undefined;
 
   export let vertical = false;
   export let style: InputStyles = 'plain';
@@ -46,5 +47,14 @@
   {#if label}
     <span>{label}</span>
   {/if}
-  <input on:input={onInput} {disabled} class={styles} type="text" {name} bind:value {required} />
+  <input
+    data-testid={testid}
+    on:input={onInput}
+    {disabled}
+    class={styles}
+    type="text"
+    {name}
+    bind:value
+    {required}
+  />
 </label>

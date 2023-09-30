@@ -5,6 +5,7 @@
 
   export let onClick: (() => void) | undefined = undefined;
   export let type: 'submit' | 'button' | 'reset' = 'button';
+  export let testid: string | undefined = undefined;
 
   export let style: ButtonStyles = 'plain';
   export let shape: ButtonShapes = 'plain';
@@ -12,10 +13,10 @@
 
   const makeButtonStyleClasses = () => {
     const styles = {
-      [PLAIN]: 'bg-bg-secondary border-accent-primary border border-solid',
-      [ACTION]: 'bg-action-primary',
-      [WARNING]: 'bg-warning-primary',
-      [DANGER]: 'bg-danger-primary'
+      [PLAIN]: 'bg-bg-secondary border-accent-primary',
+      [ACTION]: 'bg-action-primary border-action-primary',
+      [WARNING]: 'bg-warning-primary border-warning-primary',
+      [DANGER]: 'bg-danger-primary border-danger-primary'
     };
     return styles[style];
   };
@@ -32,7 +33,8 @@
 
 <button
   on:click={onClick}
-  class={`active:brightness-90 ${makeButtonShapeClasses()} ${makeButtonStyleClasses()} ${styleAppend}`}
+  data-testid={testid}
+  class={`active:brightness-90 border border-solid ${makeButtonShapeClasses()} ${makeButtonStyleClasses()} ${styleAppend}`}
   {type}
 >
   <slot />

@@ -33,7 +33,7 @@
       <input type="hidden" name="id" value={word?.id} />
     {/if}
     <div class="flex flex-col gap-1">
-      <TextInput name="word" label="Word" vertical initialValue={word?.word} />
+      <TextInput name="word" label="Word" testid="word-input" vertical initialValue={word?.word} />
       {#if pronunciation}
         <Pronunciation content={pronunciation} />
       {/if}
@@ -44,10 +44,11 @@
         vertical
         label="Definitions"
         name="newDef"
+        testid="definition"
         options={wordLinkOptions}
         callback={(value) => (word_links = [...word_links, value])}
       />
-      <ul class="h-36 overflow-y-scroll">
+      <ul class="h-36 overflow-y-scroll" data-testid="linked-definitions">
         {#each word_links as link_id}
           <li>
             {composeDefinitionWithHint(globalWordLinks.find(({ id }) => link_id === id))}
@@ -63,9 +64,10 @@
       required
       options={partOfSpeechOptions}
       initialValue={word?.part_of_speech}
+      testid="part-of-speech-select"
     />
   </div>
   <div class="my-6">
-    <Button type="submit" style="action">Save</Button>
+    <Button type="submit" style="action" testid="word-submit-btn">Save</Button>
   </div>
 </form>

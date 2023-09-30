@@ -3,10 +3,11 @@
   export let label = '';
   export let initialValue: number | undefined | null = undefined;
   export let required = false;
-  export let vertical = false;
   export let options: { value: number; label: string }[];
   export let callback: (value: number) => void;
+  export let testid: string | undefined = undefined;
 
+  export let vertical = false;
   let expanded = false;
   let value: string = options.find(({ value }) => value === initialValue)?.label || '';
   let storedValue: number | undefined = options.find(({ value }) => value === initialValue)?.value;
@@ -44,10 +45,12 @@
       {required}
       type="text"
       class="border-accent-primary border border-solid rounded-sm disabled:brightness-75"
+      data-testid={`${testid}-input`}
       bind:value
       on:focusout={() => setTimeout(() => (expanded = false), 200)}
     />
     <ul
+      data-testid={`${testid}-results`}
       class={`absolute max-h-32 w-52 overflow-y-scroll bg-bg-secondary z-10 border-accent-secondary border border-solid ${
         !expanded && 'hidden'
       }`}

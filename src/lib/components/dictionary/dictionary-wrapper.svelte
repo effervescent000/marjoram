@@ -8,7 +8,7 @@
   const headers = ['Word', 'Definition', 'Part of Speech', 'Notes', ''];
 </script>
 
-<div class="grid grid-cols-5">
+<div class="grid grid-cols-5" data-testid="dictionary-results">
   <TableHeader {headers} />
   {#each words as word}
     <WordItem {word} />

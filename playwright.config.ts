@@ -1,4 +1,4 @@
-import type { PlaywrightTestConfig } from '@playwright/test';
+import { PlaywrightTestConfig, devices } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
   webServer: {
@@ -6,7 +6,31 @@ const config: PlaywrightTestConfig = {
     port: 4173
   },
   testDir: 'tests',
-  testMatch: /(.+\.)?(test|spec)\.[jt]s/
+  testMatch: /(.+\.)?(test|spec)\.[jt]s/,
+  projects: [
+    // Setup project
+    { name: 'setup', testMatch: /.*\.setup\.ts/ },
+
+    // {
+    //   name: 'chromium',
+    //   use: {
+    //     ...devices['Desktop Chrome'],
+    //     // Use prepared auth state.
+    //     storageState: 'playwright/.auth/user.json'
+    //   },
+    //   dependencies: ['setup']
+    // },
+
+    {
+      name: 'firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        // Use prepared auth state.
+        storageState: 'playwright/.auth/user.json'
+      },
+      dependencies: ['setup']
+    }
+  ]
 };
 
 export default config;

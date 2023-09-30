@@ -8,6 +8,7 @@
   export let initialValue: string | number | undefined | null = undefined;
   export let required = false;
   export let disabled = false;
+  export let testid: string | undefined = undefined;
 
   export let vertical = false;
   export let style: InputStyles = 'plain';
@@ -31,7 +32,15 @@
   {#if label}
     <span>{label}</span>
   {/if}
-  <select {disabled} {name} bind:value class={styles} on:change={onChange} {required}>
+  <select
+    data-testid={testid}
+    {disabled}
+    {name}
+    bind:value
+    class={styles}
+    on:change={onChange}
+    {required}
+  >
     <option value={undefined}>--</option>
     {#each options as opt}
       <option value={opt.value}>{opt.label}</option>
