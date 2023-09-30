@@ -10,4 +10,4 @@
   <span>Pronunciation Estimation Rules</span>
 </Heading>
 
-<SpellingForm token={data.token} spellingRules={data.spellingRules} />
+<SpellingForm spellingRules={data.spellingRules} />

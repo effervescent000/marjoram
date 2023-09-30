@@ -16,6 +16,10 @@
   let styles: string = '';
 
   $: {
+    value = initialValue;
+  }
+
+  $: {
     const styleArray = [];
 
     styleArray.push(styleLookup[style], heightLookup[height], widthLookup[width]);
