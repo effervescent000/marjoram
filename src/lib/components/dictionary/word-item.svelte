@@ -26,7 +26,7 @@
   <ButtonWithIcon
     onClick={() => {
       editTargetWord.set(word);
-      goto(`/language/${$selectedLanguage}/dictionary/edit`);
+      goto(`/language/${$selectedLanguage}/dictionary/edit/${word.id}`);
     }}
     icon={faPencil}
   />

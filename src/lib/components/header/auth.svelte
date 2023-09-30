@@ -17,7 +17,7 @@
     {#if signUp}
       <PasswordInput label="Verify Password" name="verify" />
     {/if}
-    <Button>{signUp ? 'Sign up' : 'Login'}</Button>
+    <Button type="submit">{signUp ? 'Sign up' : 'Login'}</Button>
   </form>
 {:else}
   <span>Hello, {$userStore.username}!</span>

@@ -7,3 +7,7 @@ export const SoundChangeRulesSchema = z.object({
   role: z.string().nullable(),
   language_id: z.number()
 });
+
+export const SoundChangeResultSchema = z.object({
+  output: z.array(z.string())
+});

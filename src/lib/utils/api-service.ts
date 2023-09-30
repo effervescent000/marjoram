@@ -77,7 +77,7 @@ export const POST = async (
 ) => {
   const url = BASE_URL + endpoint;
   const result = await makePostRequest(url, { params, token, body });
-  return result.data;
+  return result;
 };
 
 export const login = async (userData: { username?: string; password?: string }) => {

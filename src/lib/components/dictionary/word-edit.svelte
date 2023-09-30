@@ -15,6 +15,7 @@
   export let word: Word | undefined = undefined;
   export let globalWordLinks: WordLink[];
   export let language_id: number;
+  export let pronunciation: string | undefined = undefined;
 
   let word_links = word?.word_links.map((link) => link.id) || [];
 
@@ -28,7 +29,13 @@
   <div class="grid grid-cols-2 gap-y-10">
     <input type="hidden" name="language_id" value={language_id} />
     <input type="hidden" name="id" value={word?.id} />
-    <TextInput name="word" label="Word" vertical initialValue={word?.word} />
+    <div>
+      <TextInput name="word" label="Word" vertical initialValue={word?.word} />
+      {#if pronunciation}
+        <span>[{pronunciation}]</span>
+      {/if}
+    </div>
+
     <div>
       <SearchableTextInput
         vertical
