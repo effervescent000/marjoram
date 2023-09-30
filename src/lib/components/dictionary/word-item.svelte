@@ -22,7 +22,7 @@
 <span>{definition}</span>
 <span>{word.part_of_speech}</span>
 <span>{word.notes}</span>
-<div class="flex">
+<div class="flex items-center">
   <ButtonWithIcon
     onClick={() => {
       editTargetWord.set(word);
@@ -32,6 +32,6 @@
   />
   <form method="post" action="?/deleteWord" use:enhance>
     <input type="hidden" name="id" value={word.id} />
-    <ButtonWithIcon icon={faX} type="submit" />
+    <ButtonWithIcon icon={faX} style="danger" type="submit" />
   </form>
 </div>

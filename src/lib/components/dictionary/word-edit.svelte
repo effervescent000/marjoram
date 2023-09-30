@@ -11,6 +11,8 @@
   import TextInput from '$lib/components/common/text-input.svelte';
   import { Select } from '$lib';
   import Button from '../common/button.svelte';
+  import Pronunciation from './pronunciation.svelte';
+  import LilPadder from '../common/lil-padder.svelte';
 
   export let word: Word | undefined = undefined;
   export let globalWordLinks: WordLink[];
@@ -29,10 +31,10 @@
   <div class="grid grid-cols-2 gap-y-10">
     <input type="hidden" name="language_id" value={language_id} />
     <input type="hidden" name="id" value={word?.id} />
-    <div>
+    <div class="flex flex-col gap-1">
       <TextInput name="word" label="Word" vertical initialValue={word?.word} />
       {#if pronunciation}
-        <span>[{pronunciation}]</span>
+        <Pronunciation content={pronunciation} />
       {/if}
     </div>
 
