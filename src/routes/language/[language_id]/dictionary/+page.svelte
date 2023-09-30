@@ -1,5 +1,6 @@
 <script lang="ts">
   import { languageStore, selectedLanguage } from '$lib/stores/language-store';
+  import { wordFiltersStore } from '$lib/stores/word-stores.js';
 
   import { Heading } from '$lib';
   import DictionaryWrapper from '$lib/components/dictionary/dictionary-wrapper.svelte';
@@ -9,6 +10,18 @@
   export let data;
 
   $: language = $languageStore.find(({ id }) => $selectedLanguage === id);
+  $: filteredWords = data.words.filter(({ word, word_links }) => {
+    if ($wordFiltersStore.definition) {
+      if (
+        !word_links.some(({ definition }) =>
+          definition.includes($wordFiltersStore.definition as string)
+        )
+      ) {
+        return false;
+      }
+    }
+    return true;
+  });
 </script>
 
 {#if !language}
@@ -19,5 +32,5 @@
   </Heading>
   <DictionaryControls />
   <LilPadder size="s" />
-  <DictionaryWrapper words={data.words} />
+  <DictionaryWrapper words={filteredWords} />
 {/if}

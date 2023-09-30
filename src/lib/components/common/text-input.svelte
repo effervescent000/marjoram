@@ -7,7 +7,7 @@
   export let initialValue: string | undefined | null = undefined;
   export let required = false;
   export let disabled = false;
-  export let onInput: FormEventHandler<HTMLInputElement> | undefined = undefined;
+  export let onInput: ((event: { target: { value: string } }) => void) | undefined = undefined;
   export let testid: string | undefined = undefined;
 
   export let vertical = false;

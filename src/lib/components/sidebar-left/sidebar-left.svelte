@@ -11,7 +11,7 @@
   $: routes = navRoutes($selectedLanguage);
 </script>
 
-<div class="border-accent-primary border-r p-2 border-solid min-h-screen flex flex-col gap-2">
+<div class="border-accent-primary border-r-2 p-2 border-solid min-h-screen flex flex-col gap-2">
   <Auth />
   {#if $userStore}
     <LangSelectorWrapper />
