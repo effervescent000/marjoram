@@ -13,6 +13,7 @@
     style="action"
     shape="circle"
     icon={faStar}
+    size="s"
     onClick={() => goto('/language/edit')}
   />
 </div>

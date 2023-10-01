@@ -16,4 +16,5 @@
   globalWordLinks={data.wordLinks}
   language_id={$selectedLanguage}
   pronunciation={data.spelling?.output[0]}
+  globalWordClasses={data.wordClasses}
 />

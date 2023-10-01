@@ -15,8 +15,11 @@ export default {
       },
       transitionProperty: {
         height: "max-height, height"
+      },
+      fontSize: {
+        "2xs": "0.6rem"
       }
     }
   },
-  plugins: []
+  plugins: [],
 };

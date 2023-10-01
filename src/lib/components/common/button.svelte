@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { ButtonShapes, ButtonStyles } from '$lib/types/common-types';
+  import type { ButtonShapes, ButtonStyles, Sizes } from '$lib/types/common-types';
 
   import { ACTION, CIRCLE, PLAIN, WARNING, DANGER } from '$lib/constants/styling-constants';
 
@@ -10,31 +10,42 @@
   export let style: ButtonStyles = 'plain';
   export let shape: ButtonShapes = 'plain';
   export let styleAppend: string | undefined = undefined;
+  export let size: Sizes = 'm';
 
-  const makeButtonStyleClasses = () => {
-    const styles = {
-      [PLAIN]: 'bg-bg-secondary border-accent-primary',
-      [ACTION]: 'bg-action-primary border-action-primary',
-      [WARNING]: 'bg-warning-primary border-warning-primary',
-      [DANGER]: 'bg-danger-primary border-danger-primary'
-    };
-    return styles[style];
+  let styles = '';
+
+  const styleLookup = {
+    [PLAIN]: 'bg-bg-secondary border-accent-primary',
+    [ACTION]: 'bg-action-primary border-action-primary',
+    [WARNING]: 'bg-warning-primary border-warning-primary',
+    [DANGER]: 'bg-danger-primary border-danger-primary'
   };
 
-  const makeButtonShapeClasses = () => {
-    if (shape === PLAIN) {
-      return 'rounded-sm p-1 h-min';
-    }
-    if (shape === CIRCLE) {
-      return 'rounded-[100%] min-w-[20px] w-min p-1.5 max-w-[60px] aspect-square';
-    }
+  const shapeLookup = {
+    [PLAIN]: 'rounded-sm p-1 h-min',
+    [CIRCLE]: 'rounded-[100%] min-w-[20px] w-min p-1.5 max-w-[60px] aspect-square'
   };
+
+  const sizeLookup: Record<Sizes, string> = {
+    xs: 'text-2xs',
+    s: 'text-xs',
+    m: '',
+    l: '',
+    xl: ''
+  };
+
+  $: {
+    const stylesArray = [];
+    stylesArray.push(styleLookup[style], shapeLookup[shape], sizeLookup[size]);
+    console.log(stylesArray);
+    styles = stylesArray.join(' ');
+  }
 </script>
 
 <button
   on:click={onClick}
   data-testid={testid}
-  class={`active:brightness-90 border border-solid ${makeButtonShapeClasses()} ${makeButtonStyleClasses()} ${styleAppend}`}
+  class={`active:brightness-90 border border-solid  ${styles} ${styleAppend}`}
   {type}
 >
   <slot />

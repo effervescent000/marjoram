@@ -10,4 +10,8 @@
 <Heading>
   <span>Add word</span>
 </Heading>
-<WordEdit globalWordLinks={data.wordLinks} language_id={$selectedLanguage} />
+<WordEdit
+  globalWordLinks={data.wordLinks}
+  language_id={$selectedLanguage}
+  globalWordClasses={data.wordClasses}
+/>

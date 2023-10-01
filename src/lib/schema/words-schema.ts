@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { WordClassSchema } from './grammar-schema';
 
 export const WordLinkSchema = z.object({
   id: z.number(),
@@ -14,6 +15,7 @@ export const WordSchema = z.object({
   notes: z.string().nullable(),
 
   word_links: z.array(WordLinkSchema),
+  word_classes: z.array(WordClassSchema),
 
   language_id: z.number()
 });

@@ -1,13 +1,17 @@
 <script lang="ts">
-  import type { WordClass } from '$lib/types/grammar-types';
   import { createForm } from 'felte';
+  import { page } from '$app/stores';
+
+  import type { WordClass } from '$lib/types/grammar-types';
+
+  import { WordClassSchema } from '$lib/schema/grammar-schema';
+
+  import { POST } from '$lib/utils/api-service';
+
   import Button from '../common/button.svelte';
   import WordClassItem from './word-class-item.svelte';
   import { TableHeader } from '$lib';
   import LilPadder from '../common/lil-padder.svelte';
-  import { POST } from '$lib/utils/api-service';
-  import { page } from '$app/stores';
-  import { WordClassSchema } from '$lib/schema/grammar-schema';
 
   // PROPS
   export let wordClasses: WordClass[];
