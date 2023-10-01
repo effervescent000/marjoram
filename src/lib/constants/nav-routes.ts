@@ -22,6 +22,17 @@ export const navRoutes: (language_id: number) => Route[] = (language_id: number)
         label: 'Pronunciation Rules',
         path: '/spelling-changes',
         requiresLogin: true
+      },
+      {
+        label: 'Grammar',
+        path: '/grammar',
+        children: [
+          {
+            label: 'Word Classes',
+            path: '/word-classes',
+            requiresLogin: true
+          }
+        ]
       }
     ]
   },

@@ -3,4 +3,6 @@
   export let value: string | number | undefined = undefined;
 </script>
 
-<input type="hidden" {name} {value} />
+{#if value}
+  <input type="hidden" {name} {value} />
+{/if}

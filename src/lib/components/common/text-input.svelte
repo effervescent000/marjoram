@@ -29,7 +29,7 @@
 
     const widthsPerSize: Record<Sizes, string> = {
       xs: 'w-8',
-      s: '',
+      s: 'w-20',
       m: '',
       l: '',
       xl: ''
