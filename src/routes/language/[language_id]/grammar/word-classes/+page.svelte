@@ -10,4 +10,4 @@
   <span>Word Classes</span>
 </Heading>
 
-<WordClassForm wordClasses={data.wordClasses} />
+<WordClassForm wordClasses={data.wordClasses} token={data.token} />

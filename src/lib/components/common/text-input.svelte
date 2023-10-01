@@ -22,7 +22,7 @@
     const styleArray = ['rounded-sm'];
 
     if (style !== 'secret') {
-      styleArray.push('border-accent-primary border border-solid disabled:brightness-75');
+      styleArray.push('border-accent-primary border border-solid disabled:brightness-75 p-0.5');
     } else {
       styleArray.push('bg-transparent');
     }

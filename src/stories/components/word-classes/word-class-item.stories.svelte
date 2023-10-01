@@ -12,7 +12,7 @@
 </script>
 
 <Template let:args>
-  <div class="grid grid-cols-4 w-fit gap-2 justify-items-center">
+  <div class="grid grid-cols-4 w-fit gap-2 justify-items-center items-center">
     <WordClassItem {...args} />
   </div>
 </Template>

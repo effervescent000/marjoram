@@ -18,9 +18,10 @@
 </script>
 
 <HiddenInput name={prefix + 'id'} value={wordClass.id} />
-<TextInput name={prefix + 'name'} initialValue={wordClass.name} />
-<TextInput size="s" name={prefix + 'abbreviation'} initialValue={wordClass.abbreviation} />
+<TextInput required name={prefix + 'name'} initialValue={wordClass.name} />
+<TextInput required size="s" name={prefix + 'abbreviation'} initialValue={wordClass.abbreviation} />
 <Select
+  required
   name={prefix + 'part_of_speech'}
   initialValue={wordClass.part_of_speech}
   options={partOfSpeechOptions}
