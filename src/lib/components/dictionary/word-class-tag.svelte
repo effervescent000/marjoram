@@ -2,6 +2,7 @@
   import type { WordClass } from '$lib/types/grammar-types';
   import { faX } from '@fortawesome/free-solid-svg-icons';
   import ButtonWithIcon from '../common/button-with-icon.svelte';
+  import HiddenInput from '../common/hidden-input.svelte';
 
   export let id: number;
   export let removeCallback: (id: number) => void;
@@ -15,6 +16,7 @@
     class="flex gap-1 items-center bg-accent-primary border-accent-secondary border border-solid w-min p-0.5"
   >
     <span>{wordClass.abbreviation}</span>
+    <HiddenInput name="word_class_ids" value={id} />
     <ButtonWithIcon size="xs" style="danger" icon={faX} onClick={() => removeCallback(id)} />
   </li>
 {/if}

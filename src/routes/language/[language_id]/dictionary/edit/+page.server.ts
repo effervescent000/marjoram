@@ -8,7 +8,13 @@ export const actions: Actions = {
     const data = await request.formData();
     await POST('/words', {
       token: getToken(cookies),
-      body: [{ ...getAllFormData(data), word_link_ids: data.getAll('word_link_ids') }]
+      body: [
+        {
+          ...getAllFormData(data),
+          word_link_ids: data.getAll('word_link_ids'),
+          word_class_ids: data.getAll('word_class_ids')
+        }
+      ]
     });
     throw redirect(303, `/language/${params.language_id}/dictionary`);
   }

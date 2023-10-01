@@ -37,7 +37,6 @@
   $: {
     const stylesArray = [];
     stylesArray.push(styleLookup[style], shapeLookup[shape], sizeLookup[size]);
-    console.log(stylesArray);
     styles = stylesArray.join(' ');
   }
 </script>

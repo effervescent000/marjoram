@@ -15,6 +15,7 @@
   import Pronunciation from './pronunciation.svelte';
   import HiddenInput from '../common/hidden-input.svelte';
   import WordClassTag from './word-class-tag.svelte';
+  import { selectedLanguage } from '$lib/stores/language-store';
 
   export let word: Word | undefined = undefined;
   export let globalWordLinks: WordLink[];
@@ -37,7 +38,7 @@
   const removeCallback = (id: number) => (word_class_ids = word_class_ids.filter((x) => x !== id));
 </script>
 
-<form method="post" action="?/upsert" use:enhance>
+<form method="post" action={`/language/${$selectedLanguage}/dictionary/edit?/upsert`} use:enhance>
   <div class="grid grid-cols-2 gap-y-10">
     <input type="hidden" name="language_id" value={language_id} />
     <HiddenInput name="id" value={word?.id} />

@@ -1,9 +1,10 @@
 <script lang="ts">
+  import { page } from '$app/stores';
+
   import { selectedLanguage } from '$lib/stores/language-store.js';
 
   import WordEdit from '$lib/components/dictionary/word-edit.svelte';
   import { Heading } from '$lib';
-  import { page } from '$app/stores';
 
   export let data;
 </script>
